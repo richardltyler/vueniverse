@@ -11,22 +11,22 @@
       </div>
     </main>
     <footer class='footer' >
-      Footer
+      <About />
     </footer>
 </template>
 
 <script>
-// import Vue from 'vue';
-// import Router from 'vue-router';
-
+import About from './views/About.vue';
 export default {
   name: 'App',
-  components: {},
+  components: {
+    About
+  },
   props: {},
   methods: {
     getAllMovies() {
 
-    }, 
+    },
     getsomeMovies() {
 
     }
