@@ -1,26 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header class='header'>
+      Header
+    </header>
+    <main class='main'>
+      <div class='pod'>
+        POD
+      </div>
+      <div class='yesterday'>
+        Yesterday
+      </div>
+    </main>
+    <footer class='footer' >
+      Footer
+    </footer>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import Vue from 'vue';
+// import Router from 'vue-router';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: {},
+  props: {},
+  methods: {
+    getAllMovies() {
+
+    }, 
+    getsomeMovies() {
+
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
 }
 </style>
