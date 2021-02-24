@@ -1,7 +1,5 @@
 <template>
-    <header class='header'>
-      Header
-    </header>
+    <Header />
     <main class='main'>
       <div class='pod'>
         POD
@@ -18,23 +16,25 @@
 <script>
 // import Vue from 'vue';
 // import Router from 'vue-router';
+import Header from './Header.vue';
 
 export default {
   name: 'App',
-  components: {},
+  components: {
+    Header
+  },
   props: {},
   methods: {
-    getAllMovies() {
-
-    }, 
-    getsomeMovies() {
-
-    }
+    
   }
 }
 </script>
 
 <style>
+html, body {
+  margin: 0;
+}
+
 #app {
   display: flex;
   flex-direction: column;
