@@ -1,9 +1,10 @@
 <template> 
   <section class='potd-component'>
-    <iframe :src="url" class='video' />
+    <iframe :src="url" class='photo' v-if="media_type === 'video'" :title="title"/>
+    <img :src="url" class='photo' v-if="media_type === 'image'" :alt="title">
     <h2>{{ date }}</h2>
-    <h3>{{title}}</h3>
-    <h4>{{explanation}}</h4>
+    <h3>{{ title }}</h3>
+    <h4>{{ explanation }}</h4>
   </section>
 </template>
 
@@ -31,8 +32,9 @@ export default {
   align-items: center;
 }
 
-/* .video {
-  width: 1000px;
-  height: 600px;
-} */
+.photo {
+  border: none;
+  height: 300px;
+  width: 80%;
+}
 </style>
