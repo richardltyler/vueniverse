@@ -3,35 +3,31 @@
       Header
     </header>
     <main class='main'>
-      <div class='pod'>
+      <router-view />
+      <!-- <div class='pod'>
         POD
       </div>
       <div class='yesterday'>
         Yesterday
-      </div>
+      </div> -->
     </main>
     <footer class='footer' >
-      <About />
+      <router-link to='/about'>About</router-link>
+      <router-link to='/'> Home </router-link>
     </footer>
 </template>
 
 <script>
-import About from './views/About.vue';
+
 export default {
   name: 'App',
   components: {
-    About
   },
   props: {},
   methods: {
-    getAllMovies() {
-
-    },
-    getsomeMovies() {
-
-    }
   }
 }
+
 </script>
 
 <style>
