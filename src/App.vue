@@ -4,12 +4,6 @@
     </header>
     <main class='main'>
       <router-view />
-      <div class='pod'>
-        <PicOfTheDay />
-      </div>
-      <div class='yesterday'>
-        Yesterday
-      </div>
     </main>
     <footer>
       <nav class='footer-links'>
@@ -21,12 +15,9 @@
 
 <script>
 
-import PicOfTheDay from './PicOfTheDay.vue';
-
 export default {
   name: 'App',
   components: {
-    PicOfTheDay
   }
 }
 
@@ -47,7 +38,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
 }
 
