@@ -1,6 +1,16 @@
 <template> 
   <section class='potd-component'>
-    <iframe :src="url" class='photo' v-if="media_type === 'video'" :title="title"/>
+    <iframe
+      :src="url" 
+      class='video' 
+      v-if="media_type === 'video'" 
+      :title="title"
+      allowfullscreen="allowfullscreen"
+      mozallowfullscreen="mozallowfullscreen" 
+      msallowfullscreen="msallowfullscreen" 
+      oallowfullscreen="oallowfullscreen" 
+      webkitallowfullscreen="webkitallowfullscreen"
+    />
     <img :src="url" class='photo' v-if="media_type === 'image'" :alt="title">
     <h2>{{ date }}</h2>
     <h3>{{ title }}</h3>
@@ -10,7 +20,7 @@
 
 <script>
 export default {
-  name: "PhotoOfTheDay",
+  name: "PicOfTheDay",
   data() {
     return {
       date: "2021-02-23",
@@ -32,9 +42,9 @@ export default {
   align-items: center;
 }
 
-.photo {
+.video {
   border: none;
-  height: 300px;
-  width: 80%;
+  width: 640px;
+  height: 390px;
 }
 </style>
