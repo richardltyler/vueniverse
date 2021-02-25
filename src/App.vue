@@ -31,11 +31,27 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  color: white;
+}
+
 #app {
+  background-image: url(space.jpeg);
+  background-size: cover;
+  background-color: rgba(0,0,0, 0.6);
+  background-blend-mode: darken;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100vh;
+  color: white;
 }
+
+a {
+  text-decoration: none;
+  color: #824D9D;
+}
+
 </style>
