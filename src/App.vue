@@ -3,6 +3,7 @@
       Header
     </header>
     <main class='main'>
+      <router-view />
       <div class='pod'>
         <PicOfTheDay />
       </div>
@@ -10,14 +11,16 @@
         Yesterday
       </div>
     </main>
-    <footer class='footer' >
-      Footer
+    <footer>
+      <nav class='footer-links'>
+        <router-link class='footer-link' to='/about'>About</router-link>
+        <router-link class='footer-link' to='/'> Home </router-link>
+      </nav>
     </footer>
 </template>
 
 <script>
-// import Vue from 'vue';
-// import Router from 'vue-router';
+
 import PicOfTheDay from './PicOfTheDay.vue';
 
 export default {
@@ -26,16 +29,45 @@ export default {
     PicOfTheDay
   }
 }
+
 </script>
 
 <style>
+body {
+  margin: 0;
+  color: white;
+}
+
 #app {
-  /* height: 200px; */
+  background-image: url(./images/space.jpeg);
+  background-size: cover;
+  background-color: rgba(0,0,0, 0.6);
+  background-blend-mode: darken;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #824D9D;
+}
+
+footer {
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 15px 15px;
+}
+
+.footer-link {
+  margin-right: 15px;
 }
 
 .header {
