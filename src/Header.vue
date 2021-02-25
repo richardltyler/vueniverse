@@ -12,17 +12,16 @@
 <script>
 
 export default {
-  name: 'Header' 
-}
-data = () => {
-  return {
-    date: ''
-  }
-}
-methods: {
-  findPicture= () => {
-    this.$emit(date)
-  }
+  name: 'Header',
+  data() {
+    return {
+      date: Date.now()
+    }
+  },
+  methods: {
+    findPicture= () => {
+      this.$emit('submitted-date', this.date)
+    }
 }
 </script>
 
