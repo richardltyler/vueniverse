@@ -1,5 +1,5 @@
 <template>
-    <Header />
+    <Header test={{test}} />
     <main class='main'>
       <div class='pod'>
         POD
@@ -14,8 +14,6 @@
 </template>
 
 <script>
-// import Vue from 'vue';
-// import Router from 'vue-router';
 import Header from './Header.vue';
 
 export default {
