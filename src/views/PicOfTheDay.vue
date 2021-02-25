@@ -12,8 +12,9 @@
       webkitallowfullscreen="webkitallowfullscreen"
     />
     <img :src="url" class='photo' v-if="media_type === 'image'" :alt="title">
-    <h2>{{ date }}</h2>
-    <h3>{{ title }}</h3>
+    <h2>{{ title }}</h2>
+    <h3>conditional render for copyright here</h3>
+    <h4>{{ date }}</h4>
     <p class="explanation">{{ explanation }}</p>
   </section>
 </template>
@@ -51,5 +52,14 @@ export default {
 .explanation {
   text-align: center;
   width: 640px;
+}
+
+h3 {
+  margin: 0;
+}
+
+h4 {
+  margin-top: 0;
+  color: #56BBCD;
 }
 </style>
