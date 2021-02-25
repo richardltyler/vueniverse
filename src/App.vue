@@ -4,7 +4,7 @@
     </header>
     <main class='main'>
       <div class='pod'>
-        POD
+        <PicOfTheDay />
       </div>
       <div class='yesterday'>
         Yesterday
@@ -18,28 +18,27 @@
 <script>
 // import Vue from 'vue';
 // import Router from 'vue-router';
+import PicOfTheDay from './PicOfTheDay.vue';
 
 export default {
   name: 'App',
-  components: {},
-  props: {},
-  methods: {
-    getAllMovies() {
-
-    }, 
-    getsomeMovies() {
-
-    }
+  components: {
+    PicOfTheDay
   }
 }
 </script>
 
 <style>
 #app {
+  /* height: 200px; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
+}
+
+.header {
+  height: 100px;
 }
 </style>
