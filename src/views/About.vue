@@ -7,7 +7,7 @@
     </p>
     <h3>Design</h3>
     <p class="answer">
-      The team's inspiration for this application came from the information displayed on the <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a> site and uses the APOD API that can can be found <a href="https://api.nasa.gov/index.html">here</a>.
+      The team's inspiration for this application came from the information displayed on the <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>site and uses the <a href="https://api.nasa.gov/index.html">APOD API</a>.
     </p>
     <h3>Technologies</h3>
     <ul>
@@ -23,11 +23,6 @@
     </ul>
   </article>
 </template>
-
-<script>
-
-
-</script>
 
 <style scoped>
   .about {

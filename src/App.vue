@@ -11,9 +11,11 @@
         Yesterday
       </div> -->
     </main>
-    <footer class='footer' >
-      <router-link to='/about'>About</router-link>
-      <router-link to='/'> Home </router-link>
+    <footer>
+      <nav class='footer-links'>
+        <router-link class='footer-link' to='/about'>About</router-link>
+        <router-link class='footer-link' to='/'> Home </router-link>
+      </nav>
     </footer>
 </template>
 
@@ -37,7 +39,7 @@ body {
 }
 
 #app {
-  background-image: url(space.jpeg);
+  background-image: url(./images/space.jpeg);
   background-size: cover;
   background-color: rgba(0,0,0, 0.6);
   background-blend-mode: darken;
@@ -52,6 +54,20 @@ body {
 a {
   text-decoration: none;
   color: #824D9D;
+}
+
+footer {
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 15px 15px;
+}
+
+.footer-link {
+  margin-right: 15px;
 }
 
 </style>
