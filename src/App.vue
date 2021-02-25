@@ -4,12 +4,12 @@
     </header>
     <main class='main'>
       <router-view />
-      <!-- <div class='pod'>
-        POD
+      <div class='pod'>
+        <PicOfTheDay />
       </div>
       <div class='yesterday'>
         Yesterday
-      </div> -->
+      </div>
     </main>
     <footer>
       <nav class='footer-links'>
@@ -21,12 +21,12 @@
 
 <script>
 
+import PicOfTheDay from './PicOfTheDay.vue';
+
 export default {
   name: 'App',
   components: {
-  },
-  props: {},
-  methods: {
+    PicOfTheDay
   }
 }
 
@@ -70,4 +70,7 @@ footer {
   margin-right: 15px;
 }
 
+.header {
+  height: 100px;
+}
 </style>
