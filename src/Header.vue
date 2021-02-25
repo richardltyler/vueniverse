@@ -2,7 +2,7 @@
   <header class='header'>
     <h1>VUENIVERSE</h1>
     <div>
-      <input v-model='date' type='date' min='1995-06-20' />
+      <input v-model="date" type='date' min='1995-06-20' />
       <button type='submit' @click='findPicture'>Show Picture</button>
     </div>
     <p>Expand your Vue.</p>
@@ -14,7 +14,7 @@ export default {
   name: "Header",
   data() {
     return {
-      date: '2021-02-24'
+      date: ''
     }
   },
   methods: {

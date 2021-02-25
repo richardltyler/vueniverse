@@ -8,7 +8,7 @@
         Yesterday
       </div>
     </main>
-    <footer class='footer' >
+    <footer class='footer'>
       Footer
     </footer>
 </template>
