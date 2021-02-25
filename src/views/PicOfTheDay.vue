@@ -1,20 +1,21 @@
-<template> 
+<template>
   <section class='potd-component'>
     <iframe
-      :src="url" 
-      class='video' 
-      v-if="media_type === 'video'" 
+      :src="url"
+      class='video'
+      v-if="media_type === 'video'"
       :title="title"
       allowfullscreen="allowfullscreen"
-      mozallowfullscreen="mozallowfullscreen" 
-      msallowfullscreen="msallowfullscreen" 
-      oallowfullscreen="oallowfullscreen" 
+      mozallowfullscreen="mozallowfullscreen"
+      msallowfullscreen="msallowfullscreen"
+      oallowfullscreen="oallowfullscreen"
       webkitallowfullscreen="webkitallowfullscreen"
     />
     <img :src="url" class='photo' v-if="media_type === 'image'" :alt="title">
-    <h2>{{ date }}</h2>
-    <h3>{{ title }}</h3>
-    <h4>{{ explanation }}</h4>
+    <h2>{{ title }}</h2>
+    <h3>conditional render for copyright here</h3>
+    <h4>{{ date }}</h4>
+    <p class="explanation">{{ explanation }}</p>
   </section>
 </template>
 
@@ -46,5 +47,19 @@ export default {
   border: none;
   width: 640px;
   height: 390px;
+}
+
+.explanation {
+  text-align: center;
+  width: 640px;
+}
+
+h3 {
+  margin: 0;
+}
+
+h4 {
+  margin-top: 0;
+  color: #56BBCD;
 }
 </style>
