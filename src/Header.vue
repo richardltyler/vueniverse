@@ -3,25 +3,25 @@
     <h1>VUENIVERSE</h1>
     <div>
       <input v-model='date' type='date' min='1995-06-20' />
-      <button type='submit' v-on:click='findPicture'>Show Picture</button>
+      <button type='submit' @click='findPicture'>Show Picture</button>
     </div>
     <p>Expand your Vue.</p>
   </header>
 </template>
 
 <script>
-
 export default {
-  name: 'Header',
+  name: "Header",
   data() {
     return {
-      date: Date.now()
+      date: '2021-02-24'
     }
   },
   methods: {
-    findPicture= () => {
+    findPicture() {
       this.$emit('submitted-date', this.date)
     }
+  }
 }
 </script>
 

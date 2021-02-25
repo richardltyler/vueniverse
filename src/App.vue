@@ -1,5 +1,5 @@
 <template>
-    <Header test={{test}} />
+    <Header @submitted-date="showPicture" />
     <main class='main'>
       <div class='pod'>
         POD
@@ -23,7 +23,9 @@ export default {
   },
   props: {},
   methods: {
-    
+    showPicture(date) {
+      console.log(date)
+    }
   }
 }
 </script>
