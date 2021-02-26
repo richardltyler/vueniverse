@@ -4,6 +4,12 @@
     </header>
     <main class='main'>
       <router-view />
+      <div class='pod'>
+        <PicOfTheDay :potd="potd" />
+      </div>
+      <div class='yesterday'>
+        Yesterday
+      </div>
     </main>
     <footer>
       <nav class='footer-links'>
@@ -14,10 +20,22 @@
 </template>
 
 <script>
+import apiCalls from './apiCalls.js';
+import PicOfTheDay from './PicOfTheDay.vue';
 
 export default {
   name: 'App',
   components: {
+    PicOfTheDay
+  },
+  data() {
+    return {
+      potd: {}
+    }
+  },
+  created() {
+    apiCalls.getTodaysPic()
+      .then(photo => this.potd = photo);
   }
 }
 
