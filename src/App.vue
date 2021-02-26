@@ -38,6 +38,8 @@ export default {
   methods: {
     showPicture(date) {
       console.log(date)
+      apiCalls.getSpecificDatesPhoto(date)
+        .then(photo => this.potd = photo)
     }
   },
   created() {
