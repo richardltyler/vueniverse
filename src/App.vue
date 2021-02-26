@@ -21,7 +21,7 @@
 
 <script>
 import apiCalls from './apiCalls.js';
-import PicOfTheDay from './PicOfTheDay.vue';
+import PicOfTheDay from './views/PicOfTheDay.vue';
 import Header from './Header.vue';
 
 export default {
@@ -38,17 +38,16 @@ export default {
   methods: {
     showPicture(date) {
       console.log(date)
+    }
   },
   created() {
     apiCalls.getTodaysPic()
       .then(photo => this.potd = photo);
   }
 }
-
 </script>
 
 <style>
-
 body {
   margin: 0;
   color: white;

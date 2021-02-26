@@ -1,5 +1,8 @@
 <template>
-  <section class='potd-component'>
+  <section 
+    v-if="potd" 
+    class='potd-component'
+  >
     <iframe
       :src="potd.url" 
       class='video' 
@@ -11,7 +14,11 @@
       oallowfullscreen="oallowfullscreen"
       webkitallowfullscreen="webkitallowfullscreen"
     />
-    <img :src="potd.url" class='photo' v-if="potd.media_type === 'image'" :alt="potd.title">
+    <img 
+      :src="potd.url" 
+      class='photo' 
+      v-if="potd.media_type === 'image'" :alt="potd.title"
+    >
     <h2>{{ potd.date }}</h2>
     <h3>{{ potd.title }}</h3>
     <h4>{{ potd.explanation }}</h4>
