@@ -1,7 +1,5 @@
 <template>
-    <header class='header'>
-      Header
-    </header>
+    <Header @submitted-date="showPicture" />
     <main class='main'>
       <router-view />
       <div class='pod'>
@@ -11,27 +9,35 @@
         Yesterday
       </div>
     </main>
+
     <footer>
       <nav class='footer-links'>
         <router-link class='footer-link' to='/about'>About</router-link>
         <router-link class='footer-link' to='/'> Home </router-link>
       </nav>
+
     </footer>
 </template>
 
 <script>
 import apiCalls from './apiCalls.js';
 import PicOfTheDay from './PicOfTheDay.vue';
+import Header from './Header.vue';
 
 export default {
   name: 'App',
   components: {
-    PicOfTheDay
+    PicOfTheDay,
+    Header
   },
   data() {
     return {
       potd: {}
     }
+  },
+  methods: {
+    showPicture(date) {
+      console.log(date)
   },
   created() {
     apiCalls.getTodaysPic()
@@ -42,6 +48,7 @@ export default {
 </script>
 
 <style>
+
 body {
   margin: 0;
   color: white;
@@ -56,7 +63,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
 }
 
@@ -81,5 +88,21 @@ footer {
 
 .header {
   height: 100px;
+}
+
+main {
+  margin-bottom: 25px;
+}
+
+p {
+  color: #49A8C6;
+}
+
+h2 {
+  color: #F7B8AF
+}
+
+h3 {
+  color: #B05D87;
 }
 </style>
