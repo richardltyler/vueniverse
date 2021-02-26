@@ -2,8 +2,13 @@
   <header class='header'>
     <h1>VUENIVERSE</h1>
     <div>
-      <input v-model="date" type='date' min='1995-06-20' />
-      <button type='submit' @click='findPicture'>Show Picture</button>
+      <input 
+        v-model="date" 
+        type='date' 
+        min='1995-06-20' 
+        :max="today"
+        v-on:change='findPicture' 
+      />
     </div>
     <p>Expand your Vue.</p>
   </header>
@@ -14,12 +19,30 @@ export default {
   name: "Header",
   data() {
     return {
-      date: ''
+      date: '',
+      today: this.findTodaysDate()
     }
   },
   methods: {
     findPicture() {
       this.$emit('submitted-date', this.date)
+    },
+    
+    findTodaysDate() {
+      const today = new Date();
+      const todayArr = today.toLocaleDateString().split('/');
+      const year = todayArr.pop();
+      todayArr.unshift(year);
+
+      const formattedDate = todayArr.map(value => {
+        if (value.length < 2) {
+          return '0' + value;
+        } else {
+          return value;
+        }
+      });
+
+      return formattedDate.join('-');
     }
   }
 }
