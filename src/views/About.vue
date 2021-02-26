@@ -36,17 +36,6 @@
     padding: 0 50px;
     text-align: center;
   }
-  h2 {
-    color: #F7B8AF
-  }
-
-  h3 {
-    color: #B05D87;
-  }
-
-  p {
-    color: #49A8C6;
-  }
 
   a {
     text-decoration: underline;
