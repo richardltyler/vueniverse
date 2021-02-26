@@ -10,7 +10,7 @@
     <footer>
       <nav class='footer-links'>
         <router-link class='footer-link' to='/about'>About</router-link>
-        <router-link class='footer-link' to='/'> Home </router-link>
+        <router-link class='footer-link' to='/home'> Home </router-link>
       </nav>
 
     </footer>
@@ -50,7 +50,7 @@ body {
 }
 
 #app {
-  background-image: url(./images/space.jpeg);
+  background-image: url(./images/intro.png);
   background-size: cover;
   background-color: rgba(0,0,0, 0.6);
   background-blend-mode: darken;
