@@ -16,7 +16,7 @@
     />
     <img 
       :src="potd.url" 
-      class='photo' 
+      class="photo" 
       v-if="potd.media_type === 'image'" :alt="potd.title"
     >
     <h2>{{ potd.date }}</h2>
@@ -38,6 +38,12 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.photo {
+  filter: drop-shadow(5px 5px 10px #434343);
+  max-width: 640px;
+  height: auto;
 }
 
 .video {
