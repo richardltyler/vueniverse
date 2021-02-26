@@ -41,7 +41,7 @@ export default {
 }
 
 .photo {
-  filter: drop-shadow(5px 5px 10px #434343);
+  filter: drop-shadow(0 0 10px #434343);
   max-width: 640px;
   height: auto;
 }

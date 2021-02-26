@@ -1,10 +1,7 @@
 <template>
     <Header @submitted-date="showPicture" />
     <main class='main'>
-      <router-view />
-      <div class='pod'>
-        <PicOfTheDay :potd="potd" />
-      </div>
+      <router-view :potd="potd"/>
       <div class='yesterday'>
         Yesterday
       </div>
@@ -21,13 +18,11 @@
 
 <script>
 import apiCalls from './apiCalls.js';
-import PicOfTheDay from './views/PicOfTheDay.vue';
 import Header from './Header.vue';
 
 export default {
   name: 'App',
   components: {
-    PicOfTheDay,
     Header
   },
   data() {
