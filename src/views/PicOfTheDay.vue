@@ -58,5 +58,6 @@ h3 {
 h4 {
   margin-top: 0;
   color: #56BBCD;
+  width: 80%;
 }
 </style>
