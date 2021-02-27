@@ -1,15 +1,15 @@
 <template>
   <header class='header'>
     <h1>VUENIVERSE</h1>
-    <div>
+    <form>
       <input 
         v-model="date" 
         type='date' 
         min='1995-06-20' 
         :max="today"
-        v-on:change='findPicture' 
+        @change='findPicture' 
       />
-    </div>
+    </form>
     <p>Expand your Vue.</p>
   </header>
 </template>

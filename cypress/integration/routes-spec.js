@@ -16,7 +16,7 @@ describe("Vue Routes", () => {
       cy.url().should("include", "/home")
   })
 
-  it("Should change to the Home URL when navigating to the Home component", () => {
+  it("Should change to the About URL when navigating to the About component", () => {
     cy
       .get("footer").get("a:last").click()
       cy.url().should("include", "/home")
