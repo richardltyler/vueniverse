@@ -1,3 +1,5 @@
+const { iterator } = require("core-js/fn/symbol")
+
 describe("Pic of the Day component", () => {
 
   beforeEach(() => {
@@ -6,6 +8,8 @@ describe("Pic of the Day component", () => {
       .get("footer").get("a:last").click()
   })
 
-  
+  // it("Should show a picture and description when loading home page", () => {
+
+  // })
 
 })
