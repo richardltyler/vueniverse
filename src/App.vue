@@ -32,20 +32,16 @@ export default {
       apiCalls.getSpecificDatesPhoto(date)
         .then(photo => this.potd = photo)
       const day = moment(date);
-      const dayBefore = day.subtract(1, 'days').format('L');
-      const dateSplit = dayBefore.split('/')
-      const newDayBefore = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
-      apiCalls.getSpecificDatesPhoto(newDayBefore)
+      const dayBefore = day.subtract(1, 'days').format('YYYY-MM-DD');
+      apiCalls.getSpecificDatesPhoto(dayBefore)
         .then(photo => this.podb = photo)
     }
   },
   created() {
     apiCalls.getTodaysPic()
       .then(photo => this.potd = photo);
-    const dateMoment = moment().subtract(1, 'days').calendar('L')
-    const dateSplit = dateMoment.split('/')
-    const date = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
-    apiCalls.getSpecificDatesPhoto(date)
+    const dateMoment = moment.utc().subtract(1, 'days').format('YYYY-MM-DD')
+    apiCalls.getSpecificDatesPhoto(dateMoment)
       .then(data => this.podb = data)
   }
 }
