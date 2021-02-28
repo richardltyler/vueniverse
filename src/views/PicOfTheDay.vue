@@ -38,6 +38,12 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 
 .photo {

@@ -59,7 +59,9 @@ body {
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  min-width: 100vw;
   color: white;
+  position: absolute;
 }
 
 a {
