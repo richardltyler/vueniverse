@@ -26,14 +26,14 @@
       <p class="potd-explanation">{{ potd.explanation }}</p>
     </section>
   </article>
-  <DayBefore />
+  <DayBefore :podb="podb"/>
 </template>
 
 <script>
 import DayBefore from './DayBefore.vue'
 export default {
   name: 'PicOfTheDay',
-  props: ['potd'],
+  props: ['potd', 'podb'],
   components: {
     DayBefore
   }

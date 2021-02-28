@@ -1,14 +1,12 @@
 <template>
     <Header @submitted-date="showPicture" />
     <main class='main'>
-      <router-view :potd="potd"/>
+      <router-view :potd="potd" :podb="podb"/>
     </main>
-
     <footer>
       <nav class='footer-links'>
         <router-link class='footer-link' to='/about'>About</router-link>
       </nav>
-
     </footer>
 </template>
 
@@ -16,6 +14,7 @@
 
 import apiCalls from './apiCalls.js';
 import Header from './Header.vue';
+import moment from 'moment';
 
 export default {
   name: 'App',
@@ -24,7 +23,8 @@ export default {
   },
   data() {
     return {
-      potd: {}
+      potd: {},
+      podb: {}
     }
   },
   methods: {
@@ -36,6 +36,11 @@ export default {
   created() {
     apiCalls.getTodaysPic()
       .then(photo => this.potd = photo);
+    const dateMoment = moment().subtract(1, 'days').calendar('L')
+    const dateSplit = dateMoment.split('/')
+    const date = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
+    apiCalls.getSpecificDatesPhoto(date)
+      .then(data => this.podb = data)
   }
 }
 </script>

@@ -21,26 +21,10 @@
 </template>
 
 <script>
-import apiCalls from '../apiCalls.js'
-import moment from 'moment';
 
 export default {
     name: 'DayBefore',
-    data() {
-        return {
-            podb: {}
-        }
-    },
-    methods: {
-
-    },
-    mounted() {
-        const dateMoment = moment().subtract(1, 'days').calendar('L')
-        const dateSplit = dateMoment.split('/')
-        const date = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
-        apiCalls.getSpecificDatesPhoto(date)
-        .then(data => this.podb = data)
-    }
+    props: ['podb'],
 }
 </script>
 
