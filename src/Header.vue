@@ -79,4 +79,13 @@ export default {
   .home-link {
     margin-right: 4%;
   }
+
+  input {
+    background-color: black;
+    color: white;
+    border: none;
+  }
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
 </style>
