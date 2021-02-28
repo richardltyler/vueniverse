@@ -1,7 +1,22 @@
 <template>
     <div class='day-before-container'>
         <h2>Day Before</h2>
-        <h3>{{ podb.date }} </h3>
+        <iframe
+            :src="podb.url" 
+            class='video' 
+            v-if="podb.media_type === 'video'" 
+            :title="podb.title"
+            allowfullscreen="allowfullscreen"
+            mozallowfullscreen="mozallowfullscreen"
+            msallowfullscreen="msallowfullscreen"
+            oallowfullscreen="oallowfullscreen"
+            webkitallowfullscreen="webkitallowfullscreen"
+        />
+        <img 
+            :src="podb.url" 
+            class="photo" 
+            v-if="podb.media_type === 'image'" :alt="podb.title"
+        >
     </div>
 </template>
 
@@ -24,9 +39,7 @@ export default {
         const dateSplit = dateMoment.split('/')
         const date = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
         apiCalls.getSpecificDatesPhoto(date)
-        .then(data => {
-            console.log(data)
-            this.podb = data})
+        .then(data => this.podb = data)
     }
 }
 </script>
@@ -34,8 +47,16 @@ export default {
 <style scoped>
 .day-before-container {
     border: white 1px solid;
-    max-width: 320px;
+    max-width: 40%;
+    height: auto;
     margin-left: 4%;
     text-align: center;
+}
+
+.video,
+.photo {
+    max-width: 60%;
+    height: auto;
+    max-height: 300px;
 }
 </style>
