@@ -24,17 +24,33 @@ export default {
   data() {
     return {
       potd: {},
-      podb: {}
+      podb: {},
+      pond: {},
     }
   },
   methods: {
     showPicture(date) {
       apiCalls.getSpecificDatesPhoto(date)
         .then(photo => this.potd = photo)
-      const day = moment(date);
-      const dayBefore = day.subtract(1, 'days').format('YYYY-MM-DD');
+      // const day = moment(date);
+      // const dayBefore = day.subtract(1, 'days').format('YYYY-MM-DD');
+      const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
         .then(photo => this.podb = photo)
+
+      const nextDay = this.getNextDate(date);
+      apiCalls.getSpecificDatesPhoto(nextDay)
+        .then(photo => {
+          this.pond = photo
+          console.log(this.pond)})
+    },
+    getPreviousDate(date) {
+      const day = moment(date);
+      return day.subtract(1, 'days').format('YYYY-MM-DD');
+    },
+    getNextDate(date) {
+      const day = moment(date);
+      return day.add(1, 'days').format('YYYY-MM-DD');
     }
   },
   created() {

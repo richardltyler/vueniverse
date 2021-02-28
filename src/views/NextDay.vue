@@ -1,6 +1,6 @@
 <template>
     <div class='different-day-container'>
-        <h2>Day Before</h2>
+        <h2>Next Day</h2>
         <iframe
             :src="podb.url" 
             class='different-day-video' 
@@ -22,24 +22,11 @@
 
 <script>
 export default {
-    name: 'DayBefore',
-    props: ['podb'],
+  name: 'NextDay',
+  props: ['pond'],
 }
 </script>
 
-<style>
-.different-day-container {
-    border: white 1px solid;
-    max-width: 40%;
-    height: auto;
-    margin-left: 4%;
-    text-align: center;
-}
+<style scoped>
 
-.different-day-video,
-.different-day-photo {
-    max-width: 60%;
-    height: auto;
-    max-height: 300px;
-}
 </style>
