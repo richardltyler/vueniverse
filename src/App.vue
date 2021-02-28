@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
 import apiCalls from './apiCalls.js';
 import Header from './Header.vue';
 
@@ -44,6 +45,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 body {
   margin: 0;
   color: white;
@@ -62,6 +64,7 @@ body {
   min-width: 100vw;
   color: white;
   position: absolute;
+  font-family: "Montserrat";
 }
 
 a {
@@ -89,7 +92,16 @@ footer {
 
 main {
   margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn ease 2s;
 }
+
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+} */
 
 p {
   color: #49A8C6;
