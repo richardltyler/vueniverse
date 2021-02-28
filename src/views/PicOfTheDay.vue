@@ -27,19 +27,19 @@
     </section>
   </article>
   <DayBefore :podb="podb"/>
-  <!-- <NextDay :pond="pond" /> -->
+  <NextDay v-if="pond" :pond="pond" />
 </template>
 
 <script>
 import DayBefore from './DayBefore.vue'
-// import NextDay from 'NextDay';
+import NextDay from './NextDay.vue';
 
 export default {
   name: 'PicOfTheDay',
   props: ['potd', 'podb', 'pond'],
   components: {
     DayBefore,
-    // NextDay
+    NextDay
   }
 }
 </script>

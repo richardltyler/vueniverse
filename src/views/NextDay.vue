@@ -2,10 +2,10 @@
     <div class='different-day-container'>
         <h2>Next Day</h2>
         <iframe
-            :src="podb.url" 
+            :src="pond.url" 
             class='different-day-video' 
-            v-if="podb.media_type === 'video'" 
-            :title="podb.title"
+            v-if="pond.media_type === 'video'" 
+            :title="pond.title"
             allowfullscreen="allowfullscreen"
             mozallowfullscreen="mozallowfullscreen"
             msallowfullscreen="msallowfullscreen"
@@ -13,9 +13,9 @@
             webkitallowfullscreen="webkitallowfullscreen"
         />
         <img 
-            :src="podb.url" 
+            :src="pond.url" 
             class="different-day-photo" 
-            v-if="podb.media_type === 'image'" :alt="podb.title"
+            v-if="pond.media_type === 'image'" :alt="pond.title"
         >
     </div>
 </template>

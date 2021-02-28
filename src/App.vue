@@ -1,7 +1,11 @@
 <template>
     <Header @submitted-date="showPicture" />
     <main class='main'>
-      <router-view :potd="potd" :podb="podb"/>
+      <router-view 
+        :potd="potd" 
+        :podb="podb" 
+        :pond="pond" 
+      />
     </main>
     <footer>
       <nav class='footer-links'>
@@ -26,23 +30,28 @@ export default {
       potd: {},
       podb: {},
       pond: {},
+      todaysDate: this.getTodaysDate(),
     }
   },
   methods: {
     showPicture(date) {
       apiCalls.getSpecificDatesPhoto(date)
         .then(photo => this.potd = photo)
-      // const day = moment(date);
-      // const dayBefore = day.subtract(1, 'days').format('YYYY-MM-DD');
+
       const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
         .then(photo => this.podb = photo)
 
-      const nextDay = this.getNextDate(date);
-      apiCalls.getSpecificDatesPhoto(nextDay)
-        .then(photo => {
-          this.pond = photo
-          console.log(this.pond)})
+      if (date !== this.todaysDate) {
+        const nextDay = this.getNextDate(date);
+        apiCalls.getSpecificDatesPhoto(nextDay)
+          .then(photo => {
+            this.pond = photo
+            console.log(this.pond)})
+      }
+    },
+    getTodaysDate() {
+      return moment().format('YYYY-MM-DD');
     },
     getPreviousDate(date) {
       const day = moment(date);
