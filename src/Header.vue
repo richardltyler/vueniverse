@@ -1,5 +1,6 @@
 <template>
   <header class='header'>
+    <h1>VUENIVERSE</h1>
     <section class="logo">
      <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
@@ -10,7 +11,7 @@
         type='date' 
         min='1995-06-20' 
         :max="today"
-        v-on:change='findPicture' 
+        @change='findPicture' 
       />
     </div>
     <router-link class='home-link' to='/home'> Home </router-link>
