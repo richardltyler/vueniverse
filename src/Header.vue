@@ -1,7 +1,11 @@
 <template>
   <header class='header'>
     <h1>VUENIVERSE</h1>
-    <form>
+    <section class="logo">
+     <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
+     <p>Expand your Vue.</p>
+    </section>
+    <div>
       <input 
         v-model="date" 
         type='date' 
@@ -9,8 +13,8 @@
         :max="today"
         @change='findPicture' 
       />
-    </form>
-    <p>Expand your Vue.</p>
+    </div>
+    <router-link class='home-link' to='/home'> Home </router-link>
   </header>
 </template>
 
@@ -59,9 +63,30 @@ export default {
     align-items: center;
   }
 
+  h1 {
+    font-size: xx-large;
+  }
+
   h1, p {
     margin: 0%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 4%;
   }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-link {
+    margin-right: 4%;
+  }
+
+  input {
+    background-color: black;
+    color: white;
+    border: none;
+  }
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
 </style>
