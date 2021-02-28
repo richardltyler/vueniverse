@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import ClickToEnter from '../views/ClickToEnter.vue'
 import PicOfTheDay from '../views/PicOfTheDay.vue';
 import About from '../views/About.vue';
 
@@ -9,6 +10,10 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      component: ClickToEnter
+    },
+    {
+      path: '/home',
       component: PicOfTheDay
     },
     {
