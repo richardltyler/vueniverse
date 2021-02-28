@@ -1,6 +1,9 @@
 <template>
   <header class='header'>
-    <h1>VUENIVERSE</h1>
+    <section class="logo">
+     <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
+     <p>Expand your Vue.</p>
+    </section>
     <div>
       <input 
         v-model="date" 
@@ -10,7 +13,7 @@
         v-on:change='findPicture' 
       />
     </div>
-    <p>Expand your Vue.</p>
+    <router-link class='home-link' to='/home'> Home </router-link>
   </header>
 </template>
 
@@ -59,9 +62,21 @@ export default {
     align-items: center;
   }
 
+  h1 {
+    font-size: xx-large;
+  }
+
   h1, p {
     margin: 0%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 4%;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-link {
+    margin-right: 4%;
   }
 </style>

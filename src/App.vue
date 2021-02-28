@@ -10,7 +10,6 @@
     <footer>
       <nav class='footer-links'>
         <router-link class='footer-link' to='/about'>About</router-link>
-        <router-link class='footer-link' to='/home'> Home </router-link>
       </nav>
 
     </footer>

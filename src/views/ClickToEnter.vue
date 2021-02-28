@@ -21,7 +21,6 @@ div {
 }
 a {
   font-size: x-large;
-  color: white;
   margin: 0;
 }
 p {
