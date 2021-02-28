@@ -26,13 +26,16 @@
       <p class="potd-explanation">{{ potd.explanation }}</p>
     </section>
   </article>
-  <DayBefore :podb="podb"/>
-  <NextDay v-if="pond" :pond="pond" />
+  <section class="previews"> 
+    <DayBefore :podb="podb"/>
+    <NextDay v-if="checkForPond()" :pond="pond" />
+  </section>
 </template>
 
 <script>
 import DayBefore from './DayBefore.vue'
 import NextDay from './NextDay.vue';
+import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
@@ -40,6 +43,12 @@ export default {
   components: {
     DayBefore,
     NextDay
+  },
+  methods: {
+    checkForPond() {
+      const todaysDate = moment().format('YYYY-MM-DD');
+      return (todaysDate !== this.potd.date);
+    }
   }
 }
 </script>
@@ -84,5 +93,11 @@ export default {
 .potd-explanation {
   margin-top: 0;
   color: #56BBCD;
+}
+
+.previews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

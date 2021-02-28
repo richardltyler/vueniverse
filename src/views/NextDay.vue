@@ -1,4 +1,4 @@
-<template>
+<template >
     <div class='different-day-container'>
         <h2>Next Day</h2>
         <iframe
@@ -24,6 +24,9 @@
 export default {
   name: 'NextDay',
   props: ['pond'],
+  // mounted() {
+  //   console.log(this.pond);
+  // }
 }
 </script>
 

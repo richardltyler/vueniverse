@@ -45,9 +45,7 @@ export default {
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
-          .then(photo => {
-            this.pond = photo
-            console.log(this.pond)})
+          .then(photo => this.pond = photo)
       }
     },
     getTodaysDate() {
