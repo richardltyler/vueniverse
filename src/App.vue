@@ -31,6 +31,12 @@ export default {
     showPicture(date) {
       apiCalls.getSpecificDatesPhoto(date)
         .then(photo => this.potd = photo)
+      const day = moment(date);
+      const dayBefore = day.subtract(1, 'days').format('L');
+      const dateSplit = dayBefore.split('/')
+      const newDayBefore = dateSplit[2] + '-' + dateSplit[0] + '-' + dateSplit[1]
+      apiCalls.getSpecificDatesPhoto(newDayBefore)
+        .then(photo => this.podb = photo)
     }
   },
   created() {
