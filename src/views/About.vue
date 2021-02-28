@@ -35,6 +35,7 @@
   .answer {
     padding: 0 50px;
     text-align: center;
+    color: #49A8C6;
   }
 
   a {

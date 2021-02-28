@@ -1,10 +1,7 @@
 <template>
     <Header @submitted-date="showPicture" />
     <main class='main'>
-      <router-view />
-      <div class='pod'>
-        <PicOfTheDay :potd="potd" />
-      </div>
+      <router-view :potd="potd"/>
       <div class='yesterday'>
         Yesterday
       </div>
@@ -13,21 +10,19 @@
     <footer>
       <nav class='footer-links'>
         <router-link class='footer-link' to='/about'>About</router-link>
-        <router-link class='footer-link' to='/'> Home </router-link>
       </nav>
 
     </footer>
 </template>
 
 <script>
+
 import apiCalls from './apiCalls.js';
-import PicOfTheDay from './PicOfTheDay.vue';
 import Header from './Header.vue';
 
 export default {
   name: 'App',
   components: {
-    PicOfTheDay,
     Header
   },
   data() {
@@ -37,25 +32,26 @@ export default {
   },
   methods: {
     showPicture(date) {
-      console.log(date)
+      apiCalls.getSpecificDatesPhoto(date)
+        .then(photo => this.potd = photo)
+    }
   },
   created() {
     apiCalls.getTodaysPic()
       .then(photo => this.potd = photo);
   }
 }
-
 </script>
 
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 body {
   margin: 0;
   color: white;
 }
 
 #app {
-  background-image: url(./images/space.jpeg);
+  background-image: url(./images/intro.png);
   background-size: cover;
   background-color: rgba(0,0,0, 0.6);
   background-blend-mode: darken;
@@ -64,7 +60,10 @@ body {
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  min-width: 100vw;
   color: white;
+  position: absolute;
+  font-family: "Montserrat";
 }
 
 a {
@@ -92,7 +91,16 @@ footer {
 
 main {
   margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn ease 2s;
 }
+
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+} */
 
 p {
   color: #49A8C6;
