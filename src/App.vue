@@ -2,9 +2,6 @@
     <Header @submitted-date="showPicture" />
     <main class='main'>
       <router-view :potd="potd"/>
-      <div class='yesterday'>
-        Yesterday
-      </div>
     </main>
 
     <footer>

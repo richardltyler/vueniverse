@@ -1,6 +1,7 @@
 <template>
   <div>
-    <router-link to="/home">🤠 CLICK HERE TO ENTER 🤠</router-link>
+    <h2>🤠 👽 WELCOME TO THE VUENIVERSE!! 👽 🤠</h2>
+    <router-link to="/home">🚀 🛰 CLICK HERE TO ENTER 🛰 🚀</router-link>
   </div>
 </template>
 

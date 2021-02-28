@@ -20,19 +20,23 @@
       v-if="potd.media_type === 'image'" :alt="potd.title"
     >
     <section class="information">
-     <h2 class="potd-date">{{ potd.date }}</h2>
-     <h3 class="potd-title">{{ potd.title }}</h3>
-     <h4 class="potd-copyright" v-if="potd.copyright">{{ potd.copyright }}</h4>
-    <p class="potd-explanation">{{ potd.explanation }}</p>
+      <h2 class="potd-date">{{ potd.date }}</h2>
+      <h3 class="potd-title">{{ potd.title }}</h3>
+      <h4 class="potd-copyright" v-if="potd.copyright">{{ potd.copyright }}</h4>
+      <p class="potd-explanation">{{ potd.explanation }}</p>
     </section>
   </article>
-
+  <DayBefore />
 </template>
 
 <script>
+import DayBefore from './DayBefore.vue'
 export default {
   name: 'PicOfTheDay',
   props: ['potd'],
+  components: {
+    DayBefore
+  }
 }
 </script>
 
