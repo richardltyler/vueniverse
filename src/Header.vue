@@ -1,6 +1,5 @@
 <template>
   <header class='header'>
-    <h1>VUENIVERSE</h1>
     <section class="logo">
      <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
