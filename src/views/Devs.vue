@@ -30,7 +30,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 2rem;
   row-gap: 1rem;
   flex-wrap: wrap;
 }
@@ -45,6 +45,7 @@ export default {
 .dev-image {
   height: 250px;
   width: 250px;
+  filter: drop-shadow(0 0 10px #434343);
 }
 
 .dev-name {
