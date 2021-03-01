@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ClickToEnter from '../views/ClickToEnter.vue'
+import ClickToEnter from '../views/ClickToEnter.vue';
 import PicOfTheDay from '../views/PicOfTheDay.vue';
 import About from '../views/About.vue';
+// import SpecificDate from '../views/SpecificDate.vue';
 
 const routerHistory = createWebHistory()
 
@@ -19,6 +20,10 @@ const router = createRouter({
     {
       path: '/about',
       component: About
+    },
+    {
+      path: '/date/:date',
+      component: PicOfTheDay
     }
   ]
 })
