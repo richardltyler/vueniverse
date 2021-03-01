@@ -1,6 +1,5 @@
 <template>
   <header class='header'>
-    <h1>VUENIVERSE</h1>
     <section class="logo">
      <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
@@ -14,11 +13,12 @@
         @change='findPicture' 
       />
     </div>
-    <router-link class='home-link' to='/home'> Home </router-link>
+    <router-link class='home-link' to='/home' @click='goHome'> Home </router-link>
   </header>
 </template>
 
 <script>
+import router from './router'
 export default {
   name: "Header",
   data() {
@@ -30,8 +30,11 @@ export default {
   methods: {
     findPicture() {
       this.$emit('submitted-date', this.date)
+      router.push({path:`/date/${this.date}`})
     },
-    
+    goHome() {
+      this.$emit('submitted-date')
+    },
     findTodaysDate() {
       const today = new Date();
       const todayArr = today.toLocaleDateString().split('/');
