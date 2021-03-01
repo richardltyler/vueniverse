@@ -1,7 +1,7 @@
 <template>
   <header class='header'>
     <section class="logo">
-     <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
+     <router-link to='/home' @click='goHome'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
     </section>
     <div>
@@ -9,7 +9,7 @@
         v-model="date" 
         type='date' 
         min='1995-06-20' 
-        :max="today"
+        :max="todaysDate"
         @change='findPicture' 
       />
     </div>
@@ -21,10 +21,11 @@
 import router from './router'
 export default {
   name: "Header",
+  props: ['todaysDate'],
   data() {
     return {
       date: '',
-      today: this.findTodaysDate()
+      today: this.todaysDate
     }
   },
   methods: {
@@ -34,22 +35,6 @@ export default {
     },
     goHome() {
       this.$emit('submitted-date')
-    },
-    findTodaysDate() {
-      const today = new Date();
-      const todayArr = today.toLocaleDateString().split('/');
-      const year = todayArr.pop();
-      todayArr.unshift(year);
-
-      const formattedDate = todayArr.map(value => {
-        if (value.length < 2) {
-          return '0' + value;
-        } else {
-          return value;
-        }
-      });
-
-      return formattedDate.join('-');
     }
   }
 }

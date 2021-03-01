@@ -1,5 +1,5 @@
 <template>
-    <Header @submitted-date="showPicture" />
+    <Header @submitted-date="showPicture"  :todaysDate="todaysDate"/>
     <main class='main'>
       <router-view 
         :potd="potd" 
