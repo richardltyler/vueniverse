@@ -24,5 +24,11 @@ describe("Vue Routes", () => {
       .get("footer a").click()
     cy.url().should("include", "/about")
   })
+
+  it("Should navigate to the Home URL when clicking on the Vueniverse headline in the header", () =>{
+    cy
+      .get("header a:first").click();
+    cy.url().should("include", "/home");
+  })
 })
 
