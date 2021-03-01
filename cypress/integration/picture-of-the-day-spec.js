@@ -15,6 +15,20 @@ describe("Pic of the Day component", () => {
           body: response
         })
       }) 
+      cy.fixture('next_day_data.json')
+      .then((response) => {
+        cy.intercept('GET', 'https://api.nasa.gov/planetary/apod?date=2020-12-26&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86', {
+          statusCode: 201,
+          body: response
+        })
+      }) 
+      cy.fixture('potd_data.json')
+      .then((response) => {
+        cy.intercept('GET', 'https://api.nasa.gov/planetary/apod?date=2020-12-24&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86', {
+          statusCode: 201,
+          body: response
+        })
+      }) 
     cy.visit("http://localhost:8080") 
       .get("main")
       .get("a").eq(2).click()
