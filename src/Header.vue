@@ -6,6 +6,7 @@
     </section>
     <div>
       <input 
+        aria-label='date-input'
         v-model="date" 
         type='date' 
         min='1995-06-20' 
