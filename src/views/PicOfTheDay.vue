@@ -79,7 +79,7 @@ export default {
   color: #56BBCD;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 875px) {
   .potd-component {
     flex-direction: column;
   }
@@ -92,6 +92,23 @@ export default {
   .video {
     min-width: 480px;
     height: 255px;
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .potd-component {
+    flex-direction: column;
+  }
+  .photo {
+    max-height: 350px;
+  }
+  .information {
+    margin-top: 5%;
+  }
+  .video {
+    min-width: 320px;
+    height: 170px;
     max-height: none;
   }
 }
