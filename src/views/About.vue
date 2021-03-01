@@ -53,4 +53,10 @@
     color: #49A8C6;
   }
 
+  @media screen and (max-width: 430px) {
+    h2 {
+      font-size: medium;
+    }
+  }
+
 </style>
