@@ -65,16 +65,34 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  margin-right: 3%;
 }
 
 .potd-date,
 .potd-title,
 .potd-copyright {
-  margin: 0;
+  margin: 0.5%;
 }
 
 .potd-explanation {
-  margin-top: 0;
+  margin-top: 0.5%;
   color: #56BBCD;
+}
+
+@media screen and (max-width: 800px) {
+  .potd-component {
+    flex-direction: column;
+  }
+  .photo {
+    max-height: 350px;
+  }
+  .information {
+    margin-top: 5%;
+  }
+  .video {
+    min-width: 480px;
+    height: 255px;
+    max-height: none;
+  }
 }
 </style>
