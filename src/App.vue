@@ -53,6 +53,7 @@ export default {
         this[option] = result;
       }
     },
+    
     checkForDateParams(date, relation) {
       if (date && relation) {
         return moment(date);
