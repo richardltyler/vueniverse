@@ -3,6 +3,7 @@
     <main class='main'>
       <router-view 
         :error="error"
+        :loading="loading"
         :potd="potd" 
         :podb="podb" 
         :pond="pond"
@@ -33,11 +34,12 @@ export default {
       pond: {},
       todaysDate: this.getTodaysDate(),
       error: '',
-      loading: false
+      loading: ''
     }
   },
   methods: {
     showPicture(date) {
+      this.loading = 'loading....';
       if(date === undefined) {
         date = this.todaysDate;
       }
@@ -65,6 +67,7 @@ export default {
           } else {this.pond = results}})
         this.onHome = false;
       } 
+      setTimeout(() => {this.loading = ''}, 1000)
     },
     getTodaysDate() {
       return moment().format('YYYY-MM-DD');
