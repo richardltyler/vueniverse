@@ -32,7 +32,7 @@ export default {
       onHome: true,
       loading: '',
       error: '',
-      todaysDate: this.getTodaysDate(),
+      todaysDate: this.getDate(),
       todayPOTD: {},
       previousPOTD: {},
       nextPOTD: {},
@@ -54,12 +54,14 @@ export default {
       }
     },
 
-    getTodaysDate() {
-      return moment().format('YYYY-MM-DD');
-    },
-
     getDate(date, relation) {
-      let today = moment(date);
+      let today;
+
+      if (date && relation) {
+        today = moment(date);
+      } else {
+        today = moment();
+      }
     
       if(relation === 'next') {
         today = today.add(1, 'days')
