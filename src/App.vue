@@ -41,14 +41,15 @@ export default {
   methods: {
     getPhoto(date, option) {
       apiCalls.getSpecificDatesPhoto(date)
-          .then(results => {
-            this.handleError(results, option)
-          });
+        .then(results => {
+          this.handleError(results, option)
+        });
     },
 
     handleError(result, option) {
       if (typeof result === 'string') {
         this.error = result;
+
       } else {
         this[option] = result;
       }
@@ -57,6 +58,7 @@ export default {
     checkForDateParams(date, relation) {
       if (date && relation) {
         return moment(date);
+
       } else {
         return moment();
       }
@@ -82,7 +84,7 @@ export default {
       }
 
       this.loading = 'loading....';
-      
+
       const dayBefore = this.getDate(date, 'previous');
       const nextDay = this.getDate(date, 'next');
 
