@@ -20,7 +20,8 @@
     <img 
       :src="todayPOTD.url" 
       class="photo" 
-      v-if="todayPOTD.media_type === 'image'" :alt="todayPOTD.title"
+      v-if="todayPOTD.media_type === 'image'" 
+      :alt="todayPOTD.title"
     >
     <section class="information">
       <h2 class="potd-date">{{ todayPOTD.date }}</h2>
@@ -29,9 +30,9 @@
       <p class="potd-explanation">{{ todayPOTD.explanation }}</p>
     </section>
   </article>
-  <section v-if="!error && !loading" class="previews"> 
+  <section class="previews" v-if="!error && !loading"> 
     <Preview name="Previous" :potd="previousPOTD"/>
-    <Preview name="Next" v-if="checkForNextPOTD()" :potd="nextPOTD" />
+    <Preview name="Next" :potd="nextPOTD"  v-if="checkForNextPOTD()" />
   </section>
 </template>
 
@@ -44,7 +45,7 @@ export default {
   props: ['error', 'loading', 'todayPOTD', 'previousPOTD', 'nextPOTD'],
   emits: ['submitted-date'],
   components: {
-    Preview
+    Preview,
   },
   methods: {
     checkForNextPOTD() {

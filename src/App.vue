@@ -45,10 +45,10 @@ export default {
         date = this.todaysDate;
       }
 
-      this.getPhoto(date, 'todayPOTD')
+      this.getPhoto(date, 'todayPOTD');
 
-      const dayBefore = this.getPreviousDate(date)
-      this.getPhoto(dayBefore, 'previousPOTD')
+      const dayBefore = this.getPreviousDate(date);
+      this.getPhoto(dayBefore, 'previousPOTD');
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
@@ -56,14 +56,14 @@ export default {
         this.onHome = false;
       } 
 
-      setTimeout(() => {this.loading = ''}, 1000)
+      setTimeout(() => {this.loading = ''}, 1000);
     },
 
     getPhoto(date, option) {
       apiCalls.getSpecificDatesPhoto(date)
           .then(results => {
             this.handleError(results, option)
-          })
+          });
     },
 
     handleError(result, option) {
@@ -89,7 +89,7 @@ export default {
     }
   },
   created() {
-    this.showPicture()
+    this.showPicture();
   }
 }
 </script>
