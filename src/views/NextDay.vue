@@ -24,9 +24,6 @@
 export default {
   name: 'NextDay',
   props: ['pond'],
-  // mounted() {
-  //   console.log(this.pond);
-  // }
 }
 </script>
 
