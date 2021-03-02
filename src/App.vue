@@ -44,27 +44,28 @@ export default {
       if(date === undefined) {
         date = this.todaysDate;
       }
-      apiCalls.getSpecificDatesPhoto(date)
-        .then(results => {
-           this.handleError(results, 'potd')
-          })
+
+      this.getPhoto(date, 'potd')
 
       const dayBefore = this.getPreviousDate(date)
-      apiCalls.getSpecificDatesPhoto(dayBefore)
-        .then(results => {
-           this.handleError(results, 'podb')
-        })
+      this.getPhoto(dayBefore, 'podb')
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
-        apiCalls.getSpecificDatesPhoto(nextDay)
-          .then(results => {
-            this.handleError(results, 'pond')
-          })
+        this.getPhoto(nextDay, 'pond');
         this.onHome = false;
       } 
+
       setTimeout(() => {this.loading = ''}, 1000)
     },
+
+    getPhoto(date, option) {
+      apiCalls.getSpecificDatesPhoto(date)
+          .then(results => {
+            this.handleError(results, option)
+          })
+    },
+
     handleError(result, option) {
       if (typeof result === 'string') {
         this.error = result;
@@ -72,13 +73,16 @@ export default {
         this[option] = result;
       }
     },
+
     getTodaysDate() {
       return moment().format('YYYY-MM-DD');
     },
+
     getPreviousDate(date) {
       const day = moment(date);
       return day.subtract(1, 'days').format('YYYY-MM-DD');
     },
+    
     getNextDate(date) {
       const day = moment(date);
       return day.add(1, 'days').format('YYYY-MM-DD');
