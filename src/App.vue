@@ -86,7 +86,8 @@ export default {
     getNextDate(date) {
       const day = moment(date);
       return day.add(1, 'days').format('YYYY-MM-DD');
-    }
+    },
+
   },
   created() {
     this.showPicture();
