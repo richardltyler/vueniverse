@@ -53,15 +53,16 @@ export default {
         this[option] = result;
       }
     },
+    checkForDateParams(date, relation) {
+      if (date && relation) {
+        return moment(date);
+      } else {
+        return moment();
+      }
+    },
 
     getDate(date, relation) {
-      let today;
-
-      if (date && relation) {
-        today = moment(date);
-      } else {
-        today = moment();
-      }
+      let today = this.checkForDateParams(date, relation);
     
       if(relation === 'next') {
         today = today.add(1, 'days')
