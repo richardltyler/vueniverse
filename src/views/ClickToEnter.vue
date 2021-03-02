@@ -20,6 +20,7 @@ div {
   justify-content: center;
   text-align: center;
 }
+
 a {
   font-size: x-large;
   margin: 0;
