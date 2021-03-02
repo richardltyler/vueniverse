@@ -1,6 +1,9 @@
 <template>
+  <p class="loading-message" v-if="loading && !error">{{ loading }}</p>
+  <p class="error-message" v-if="error">{{ error }}</p>
+  
   <article 
-    v-if="potd" 
+    v-if="potd && !error && !loading" 
     class='potd-component'
   >
     <iframe
@@ -26,7 +29,7 @@
       <p class="potd-explanation">{{ potd.explanation }}</p>
     </section>
   </article>
-  <section class="previews"> 
+  <section v-if="!error && !loading" class="previews"> 
     <DayBefore :podb="podb"/>
     <NextDay v-if="checkForPond()" :pond="pond" />
   </section>
@@ -39,7 +42,7 @@ import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
-  props: ['potd', 'podb', 'pond'],
+  props: ['error', 'loading', 'potd', 'podb', 'pond'],
   components: {
     DayBefore,
     NextDay
@@ -101,6 +104,12 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+
+
+.error-message {
+  text-align: center;
+  padding: 0 30% 0 30%;
+} 
 
 @media screen and (max-width: 875px) {
   .potd-component {

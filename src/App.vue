@@ -2,6 +2,8 @@
     <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
     <main class='main'>
       <router-view 
+        :error="error"
+        :loading="loading"
         :potd="potd" 
         :podb="podb" 
         :pond="pond"
@@ -31,26 +33,41 @@ export default {
       podb: {},
       pond: {},
       todaysDate: this.getTodaysDate(),
+      error: '',
+      loading: ''
     }
   },
   methods: {
     showPicture(date) {
+      this.loading = 'loading....';
       if(date === undefined) {
         date = this.todaysDate;
       }
       apiCalls.getSpecificDatesPhoto(date)
-        .then(photo => this.potd = photo)
+        .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
+          } else {
+            this.potd = results}
+          })
 
       const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
-        .then(photo => this.podb = photo)
+        .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
+          } else { this.podb = results}})
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
-          .then(photo => this.pond = photo)
+          .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
+          } else {this.pond = results}})
         this.onHome = false;
       } 
+      setTimeout(() => {this.loading = ''}, 1000)
     },
     getTodaysDate() {
       return moment().format('YYYY-MM-DD');
@@ -66,11 +83,6 @@ export default {
   },
   created() {
     this.showPicture()
-    // apiCalls.getTodaysPic()
-    //   .then(photo => this.potd = photo);
-    // const dateMoment = moment.utc().subtract(1, 'days').format('YYYY-MM-DD')
-    // apiCalls.getSpecificDatesPhoto(dateMoment)
-    //   .then(data => this.podb = data)
   }
 }
 </script>
@@ -126,13 +138,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadeIn ease 2s;
 }
-
-@keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-} */
 
 p {
   color: #49A8C6;
