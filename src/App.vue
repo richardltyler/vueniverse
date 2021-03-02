@@ -58,14 +58,17 @@ export default {
       return moment().format('YYYY-MM-DD');
     },
 
-    getPreviousDate(date) {
-      const day = moment(date);
-      return day.subtract(1, 'days').format('YYYY-MM-DD');
-    },
+    getDate(date, relation) {
+      let today = moment(date);
     
-    getNextDate(date) {
-      const day = moment(date);
-      return day.add(1, 'days').format('YYYY-MM-DD');
+      if(relation === 'next') {
+        today = today.add(1, 'days')
+
+      } else if(relation === 'previous') {
+        today = today.subtract(1, 'days')
+      }
+
+      return today.format('YYYY-MM-DD');
     },
 
     showPicture(date) {
@@ -76,11 +79,11 @@ export default {
 
       this.getPhoto(date, 'todayPOTD');
 
-      const dayBefore = this.getPreviousDate(date);
+      const dayBefore = this.getDate(date, 'previous');
       this.getPhoto(dayBefore, 'previousPOTD');
 
       if (date !== this.todaysDate) {
-        const nextDay = this.getNextDate(date);
+        const nextDay = this.getDate(date, 'next');
         this.getPhoto(nextDay, 'nextPOTD');
         this.onHome = false;
       } 
@@ -89,6 +92,7 @@ export default {
     },
 
   },
+
   created() {
     this.showPicture();
   }
