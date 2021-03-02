@@ -7,7 +7,7 @@
         :loading="loading"
         :todayPOTD="todayPOTD" 
         :previousPOTD="previousPOTD" 
-        :pond="nextPOTD"
+        :nextPOTD="nextPOTD"
       />
     </main>
     <footer>

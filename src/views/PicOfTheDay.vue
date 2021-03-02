@@ -31,7 +31,7 @@
   </article>
   <section v-if="!error && !loading" class="previews"> 
     <Preview name="Previous" :potd="previousPOTD"/>
-    <Preview name="Next" v-if="checkForPond()" :potd="pond" />
+    <Preview name="Next" v-if="checkForNextPOTD()" :potd="nextPOTD" />
   </section>
 </template>
 
@@ -41,13 +41,13 @@ import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
-  props: ['error', 'loading', 'todayPOTD', 'previousPOTD', 'pond'],
+  props: ['error', 'loading', 'todayPOTD', 'previousPOTD', 'nextPOTD'],
   emits: ['submitted-date'],
   components: {
     Preview
   },
   methods: {
-    checkForPond() {
+    checkForNextPOTD() {
       const todaysDate = moment().format('YYYY-MM-DD');
       return (todaysDate !== this.todayPOTD.date);
     }
