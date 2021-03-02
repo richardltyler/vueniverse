@@ -46,29 +46,31 @@ export default {
       }
       apiCalls.getSpecificDatesPhoto(date)
         .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else {
-            this.potd = results}
+           this.handleError(results, 'potd')
           })
 
       const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
         .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else { this.podb = results}})
+           this.handleError(results, 'podb')
+        })
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
           .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else {this.pond = results}})
+            this.handleError(results, 'pond')
+          })
         this.onHome = false;
       } 
       setTimeout(() => {this.loading = ''}, 1000)
+    },
+    handleError(result, option) {
+      if (typeof result === 'string') {
+        this.error = result;
+      } else {
+        this[option] = result;
+      }
     },
     getTodaysDate() {
       return moment().format('YYYY-MM-DD');
