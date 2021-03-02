@@ -42,6 +42,7 @@ import moment from 'moment';
 export default {
   name: 'PicOfTheDay',
   props: ['error', 'loading', 'potd', 'podb', 'pond'],
+  emits: ['submitted-date'],
   components: {
     Preview
   },
