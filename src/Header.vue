@@ -1,7 +1,7 @@
 <template>
   <header class='header'>
     <section class="logo">
-     <router-link to='/home' @click='goHome'><h1>VUENIVERSE</h1></router-link>
+     <router-link to='/home' @click='() => findPicture(todaysDate)'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
     </section>
     <div>
@@ -10,10 +10,10 @@
         type='date' 
         min='1995-06-20' 
         :max="todaysDate"
-        @change='findPicture' 
+        @change='() => findPicture(date)' 
       />
     </div>
-    <router-link class='home-link' to='/home' @click='goHome'> Home </router-link>
+    <router-link v-if="onHome !== true" class='home-link' to='/home' @click='() => findPicture(todaysDate)'> Home </router-link>
   </header>
 </template>
 
@@ -21,7 +21,7 @@
 import router from './router'
 export default {
   name: "Header",
-  props: ['todaysDate'],
+  props: ['onHome' , 'todaysDate'],
   data() {
     return {
       date: '',
@@ -29,12 +29,9 @@ export default {
     }
   },
   methods: {
-    findPicture() {
-      this.$emit('submitted-date', this.date)
-      router.push({path:`/date/${this.date}`})
-    },
-    goHome() {
-      this.$emit('submitted-date')
+    findPicture(date) {
+      this.$emit('submitted-date', date)
+      router.push({path:`/date/${date}`})
     }
   }
 }

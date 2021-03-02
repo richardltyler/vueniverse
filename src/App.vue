@@ -1,10 +1,10 @@
 <template>
-    <Header @submitted-date="showPicture"  :todaysDate="todaysDate"/>
+    <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
     <main class='main'>
       <router-view 
         :potd="potd" 
         :podb="podb" 
-        :pond="pond" 
+        :pond="pond"
       />
     </main>
     <footer>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import apiCalls from './apiCalls.js';
 import Header from './Header.vue';
 import moment from 'moment';
@@ -27,6 +26,7 @@ export default {
   },
   data() {
     return {
+      onHome: true,
       potd: {},
       podb: {},
       pond: {},
@@ -49,6 +49,7 @@ export default {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
           .then(photo => this.pond = photo)
+        this.onHome = false;
       } 
     },
     getTodaysDate() {
