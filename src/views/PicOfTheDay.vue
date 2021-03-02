@@ -30,8 +30,8 @@
     </section>
   </article>
   <section v-if="!error && !loading" class="previews"> 
-    <Preview @submitted-date="submittedDate" :potd="podb"/>
-    <Preview @submitted-date="submittedDate" v-if="checkForPond()" :potd="pond" />
+    <Preview :potd="podb"/>
+    <Preview v-if="checkForPond()" :potd="pond" />
   </section>
 </template>
 
@@ -49,11 +49,6 @@ export default {
     checkForPond() {
       const todaysDate = moment().format('YYYY-MM-DD');
       return (todaysDate !== this.potd.date);
-    }, 
-    submittedDate(date) {
-      console.log(date)
-
-      this.$emit('submitted-date', date)
     }
   }
 }

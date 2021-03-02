@@ -28,7 +28,7 @@ export default {
     methods: {
       switchPhotos() {
         console.log('Preview')
-        this.$emit('submitted-date', this.potd.date)
+        this.$parent.$emit('submitted-date', this.potd.date)
         router.push({path:`/date/${this.potd.date}`})
       }
     }
