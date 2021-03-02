@@ -6,6 +6,7 @@
     </section>
     <div>
       <input 
+        aria-label='date-input'
         v-model="date" 
         type='date' 
         min='1995-06-20' 
@@ -73,5 +74,33 @@ export default {
   }
   ::-webkit-calendar-picker-indicator {
     filter: invert(1);
+}
+
+@media screen and (max-width: 550px) {
+  p {
+    display: none;
+  }
+  h1 {
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header {
+    flex-direction: column;
+    height: 10%;
+    text-align: center;
+  }
+  section {
+    margin: 3%;
+    width: 100%;
+  }
+  h1 {
+    width: 100%;
+    margin: 0%;
+  }
+  .home-link {
+    margin: 3%;
+  }
 }
 </style>

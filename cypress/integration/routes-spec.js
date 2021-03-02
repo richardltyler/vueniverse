@@ -10,18 +10,25 @@ describe("Vue Routes", () => {
 
   it("Should change to the Home URL when navigating to the Home component", () => {
     cy
-      .get("footer").get("a:first").click()
+      .get("footer a").click()
       cy.url().should("include", "/about")
-      .get("footer").get("a:last").click()
+      .get("header a").eq(1).click()
       cy.url().should("include", "/home")
   })
 
   it("Should change to the About URL when navigating to the About component", () => {
     cy
-      .get("footer").get("a:last").click()
-      cy.url().should("include", "/home")
-      .get("footer").get("a:first").click()
-      cy.url().should("include", "/about")
+      .get("header a").eq(1).click()
+    cy.url().should("include", "/home")
+    cy.url().should("include", "/home")
+      .get("footer a").click()
+    cy.url().should("include", "/about")
+  })
+
+  it("Should navigate to the Home URL when clicking on the Vueniverse headline in the header", () =>{
+    cy
+      .get("header a:first").click();
+    cy.url().should("include", "/home");
   })
 })
 

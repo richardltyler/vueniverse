@@ -7,7 +7,7 @@
     </p>
     <h3>Design</h3>
     <p class="answer">
-      The team's inspiration for this application came from the information displayed on the <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>site and uses the <a href="https://api.nasa.gov/index.html">APOD API</a>.
+      The team's inspiration for this application came from the information displayed on the <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a> site and uses the <a href="https://api.nasa.gov/index.html">APOD API</a>.
     </p>
     <h3>Technologies</h3>
     <ul>
@@ -21,6 +21,8 @@
         Cypress.js
       </li>
     </ul>
+    <h3>Creators</h3>
+    <router-link class='Devs-link' to='/devs'>Click here to see the engineers who created this site!</router-link>
   </article>
 </template>
 
@@ -51,6 +53,12 @@
     text-align: center;
     list-style-type: none;
     color: #49A8C6;
+  }
+
+  @media screen and (max-width: 430px) {
+    h2 {
+      font-size: medium;
+    }
   }
 
 </style>
