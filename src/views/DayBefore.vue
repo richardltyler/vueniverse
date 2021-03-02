@@ -29,8 +29,7 @@ export default {
 
 <style>
 .different-day-container {
-    /* border: white 1px solid; */
-    
+    border: white 1px solid;
     width: 160px;
     height: 180px;
     margin-left: 4%;
