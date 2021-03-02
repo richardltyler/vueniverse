@@ -30,8 +30,8 @@
     </section>
   </article>
   <section v-if="!error && !loading" class="previews"> 
-    <Preview :potd="podb"/>
-    <Preview v-if="checkForPond()" :potd="pond" />
+    <Preview name="Previous" :potd="podb"/>
+    <Preview name="Next" v-if="checkForPond()" :potd="pond" />
   </section>
 </template>
 

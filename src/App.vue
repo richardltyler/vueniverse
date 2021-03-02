@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     showPicture(date) {
-      console.log('App')
       this.loading = 'loading....';
       if(date === undefined) {
         date = this.todaysDate;

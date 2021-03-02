@@ -1,6 +1,6 @@
 <template>
-  <div class='different-day-container' v-on:click="switchPhotos">
-      <h2>Day Before</h2>
+  <div class='different-day-container' @click="switchPhotos">
+      <h2>{{ name }}</h2>
       <iframe
           :src="potd.url" 
           class='different-day-video' 
@@ -24,11 +24,11 @@
 import router from '../router';
 export default {
     name: 'DayBefore',
-    props: ['potd'],
+    props: ['name', 'potd'],
     methods: {
       switchPhotos() {
-        console.log('Preview')
         this.$parent.$emit('submitted-date', this.potd.date)
+
         router.push({path:`/date/${this.potd.date}`})
       }
     }
