@@ -5,9 +5,9 @@
         @submitted-date="showPicture"
         :error="error"
         :loading="loading"
-        :potd="potd" 
-        :podb="podb" 
-        :pond="pond"
+        :potd="todayPOTD" 
+        :podb="previousPOTD" 
+        :pond="nextPOTD"
       />
     </main>
     <footer>
@@ -30,9 +30,9 @@ export default {
   data() {
     return {
       onHome: true,
-      potd: {},
-      podb: {},
-      pond: {},
+      todayPOTD: {},
+      previousPOTD: {},
+      nextPOTD: {},
       todaysDate: this.getTodaysDate(),
       error: '',
       loading: ''
@@ -45,14 +45,14 @@ export default {
         date = this.todaysDate;
       }
 
-      this.getPhoto(date, 'potd')
+      this.getPhoto(date, 'todayPOTD')
 
       const dayBefore = this.getPreviousDate(date)
-      this.getPhoto(dayBefore, 'podb')
+      this.getPhoto(dayBefore, 'previousPOTD')
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
-        this.getPhoto(nextDay, 'pond');
+        this.getPhoto(nextDay, 'nextPOTD');
         this.onHome = false;
       } 
 
