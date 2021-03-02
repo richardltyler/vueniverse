@@ -1,10 +1,10 @@
 <template>
-    <Header @submitted-date="showPicture" />
+    <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
     <main class='main'>
       <router-view 
         :potd="potd" 
         :podb="podb" 
-        :pond="pond" 
+        :pond="pond"
       />
     </main>
     <footer>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import apiCalls from './apiCalls.js';
 import Header from './Header.vue';
 import moment from 'moment';
@@ -27,6 +26,7 @@ export default {
   },
   data() {
     return {
+      onHome: true,
       potd: {},
       podb: {},
       pond: {},
@@ -35,6 +35,9 @@ export default {
   },
   methods: {
     showPicture(date) {
+      if(date === undefined) {
+        date = this.todaysDate;
+      }
       apiCalls.getSpecificDatesPhoto(date)
         .then(photo => this.potd = photo)
 
@@ -46,7 +49,8 @@ export default {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
           .then(photo => this.pond = photo)
-      }
+        this.onHome = false;
+      } 
     },
     getTodaysDate() {
       return moment().format('YYYY-MM-DD');
@@ -61,11 +65,12 @@ export default {
     }
   },
   created() {
-    apiCalls.getTodaysPic()
-      .then(photo => this.potd = photo);
-    const dateMoment = moment.utc().subtract(1, 'days').format('YYYY-MM-DD')
-    apiCalls.getSpecificDatesPhoto(dateMoment)
-      .then(data => this.podb = data)
+    this.showPicture()
+    // apiCalls.getTodaysPic()
+    //   .then(photo => this.potd = photo);
+    // const dateMoment = moment.utc().subtract(1, 'days').format('YYYY-MM-DD')
+    // apiCalls.getSpecificDatesPhoto(dateMoment)
+    //   .then(data => this.podb = data)
   }
 }
 </script>

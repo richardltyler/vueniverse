@@ -1,7 +1,7 @@
 <template>
   <header class='header'>
     <section class="logo">
-     <router-link to='/home'><h1>VUENIVERSE</h1></router-link>
+     <router-link to='/home' @click='() => findPicture(todaysDate)'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
     </section>
     <div>
@@ -10,43 +10,29 @@
         v-model="date" 
         type='date' 
         min='1995-06-20' 
-        :max="today"
-        @change='findPicture' 
+        :max="todaysDate"
+        @change='() => findPicture(date)' 
       />
     </div>
-    <router-link class='home-link' to='/home'> Home </router-link>
+    <router-link v-if="onHome !== true" class='home-link' to='/home' @click='() => findPicture(todaysDate)'> Home </router-link>
   </header>
 </template>
 
 <script>
+import router from './router'
 export default {
   name: "Header",
+  props: ['onHome' , 'todaysDate'],
   data() {
     return {
       date: '',
-      today: this.findTodaysDate()
+      today: this.todaysDate
     }
   },
   methods: {
-    findPicture() {
-      this.$emit('submitted-date', this.date)
-    },
-    
-    findTodaysDate() {
-      const today = new Date();
-      const todayArr = today.toLocaleDateString().split('/');
-      const year = todayArr.pop();
-      todayArr.unshift(year);
-
-      const formattedDate = todayArr.map(value => {
-        if (value.length < 2) {
-          return '0' + value;
-        } else {
-          return value;
-        }
-      });
-
-      return formattedDate.join('-');
+    findPicture(date) {
+      this.$emit('submitted-date', date)
+      router.push({path:`/date/${date}`})
     }
   }
 }
