@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import ClickToEnter from '../views/ClickToEnter.vue';
 import PicOfTheDay from '../views/PicOfTheDay.vue';
 import About from '../views/About.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 
 const routerHistory = createWebHistory()
 
@@ -23,6 +24,10 @@ const router = createRouter({
     {
       path: '/date/:date',
       component: PicOfTheDay,
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: PageNotFound
     }
   ]
 })
