@@ -104,7 +104,7 @@ body {
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100%;
   color: white;
   position: absolute;
   font-family: "Montserrat";

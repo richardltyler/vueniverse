@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>🤠 👽 WELCOME TO THE VUENIVERSE!! 👽 🤠</h2>
-    <router-link to="/home">🚀 🛰 CLICK HERE TO ENTER 🛰 🚀</router-link>
+    <router-link name="enterHome" to="/home">🚀 🛰 CLICK HERE TO ENTER 🛰 🚀</router-link>
   </div>
 </template>
 
@@ -23,8 +23,5 @@ div {
 a {
   font-size: x-large;
   margin: 0;
-}
-p {
-  color: red;
 }
 </style>

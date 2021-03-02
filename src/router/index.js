@@ -3,6 +3,8 @@ import ClickToEnter from '../views/ClickToEnter.vue';
 import PicOfTheDay from '../views/PicOfTheDay.vue';
 import About from '../views/About.vue';
 import PageNotFound from '../views/PageNotFound.vue';
+import Devs from '../views/Devs.vue';
+
 
 const routerHistory = createWebHistory()
 
@@ -24,6 +26,10 @@ const router = createRouter({
     {
       path: '/date/:date',
       component: PicOfTheDay,
+    },
+    {
+      path: '/devs',
+      component: Devs
     },
     {
       path: '/:pathMatch(.*)*',
