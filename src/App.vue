@@ -39,26 +39,6 @@ export default {
     }
   },
   methods: {
-    showPicture(date) {
-      this.loading = 'loading....';
-      if(date === undefined) {
-        date = this.todaysDate;
-      }
-
-      this.getPhoto(date, 'todayPOTD');
-
-      const dayBefore = this.getPreviousDate(date);
-      this.getPhoto(dayBefore, 'previousPOTD');
-
-      if (date !== this.todaysDate) {
-        const nextDay = this.getNextDate(date);
-        this.getPhoto(nextDay, 'nextPOTD');
-        this.onHome = false;
-      } 
-
-      setTimeout(() => {this.loading = ''}, 1000);
-    },
-
     getPhoto(date, option) {
       apiCalls.getSpecificDatesPhoto(date)
           .then(results => {
@@ -86,6 +66,26 @@ export default {
     getNextDate(date) {
       const day = moment(date);
       return day.add(1, 'days').format('YYYY-MM-DD');
+    },
+
+    showPicture(date) {
+      this.loading = 'loading....';
+      if(date === undefined) {
+        date = this.todaysDate;
+      }
+
+      this.getPhoto(date, 'todayPOTD');
+
+      const dayBefore = this.getPreviousDate(date);
+      this.getPhoto(dayBefore, 'previousPOTD');
+
+      if (date !== this.todaysDate) {
+        const nextDay = this.getNextDate(date);
+        this.getPhoto(nextDay, 'nextPOTD');
+        this.onHome = false;
+      } 
+
+      setTimeout(() => {this.loading = ''}, 1000);
     },
 
   },
