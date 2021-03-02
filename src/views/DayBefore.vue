@@ -30,16 +30,20 @@ export default {
 <style>
 .different-day-container {
     border: white 1px solid;
-    max-width: 40%;
-    height: auto;
+    width: 160px;
+    height: 180px;
     margin-left: 4%;
+    margin-right: 4%;
     text-align: center;
+    overflow: hidden;
 }
 
 .different-day-video,
 .different-day-photo {
-    max-width: 60%;
-    height: auto;
-    max-height: 300px;
+  position: relative;
+  right: 38%;
+  border: none;
 }
+
+
 </style>
