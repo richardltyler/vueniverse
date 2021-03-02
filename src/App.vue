@@ -1,7 +1,8 @@
 <template>
     <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
-    <main class='main'>
+    <main class='main' >
       <router-view 
+        @submitted-date="showPicture"
         :error="error"
         :loading="loading"
         :potd="potd" 
