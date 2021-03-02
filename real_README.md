@@ -27,6 +27,19 @@ To add more features to this project, or to simply view the code in action...
 
 - A full testing suite using Cypress.io, which incorporates Mocha and Chai, that tests all user flows.
 - An 'About' page which explains the development and inspiration of the application, which also guides a user to the Github and LinkedIn profiles of the developers.
+
+## App in Action
+#### Main View - Enter & Using Previews
+
+![Main](https://media.giphy.com/media/7ylap1XaKZMYn0z2aa/giphy.gif)
+
+#### Main View - Date Input
+
+![Main_2](https://media.giphy.com/media/I6F3771FMeSiDvrMyv/giphy.gif)
+
+#### Mobile View
+
+![Mobile](https://media.giphy.com/media/a7cwjgeq5oSipUh08V/giphy.gif)
    
 ## Future Iterations
 
@@ -51,13 +64,6 @@ Another future idea would be to collect all user data and highlight which images
 - Learning how to use Cypress with Vue, especially how to trigger events such as a "change".
 - Using Vue Router to save and correctly access the browser history.
 - Properly sizing the images and videos which vary in size across multiple breakpoints.
-
-## Screenshots
-#### Mobile View
-
-#### Main View
-
-#### About
 
 ### Links
 The link to the spec sheet that guided this project: [Spec](https://frontend.turing.io/projects/module-3/stretch.html)
