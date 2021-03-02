@@ -23,7 +23,7 @@
 <script>
 import router from '../router';
 export default {
-    name: 'DayBefore',
+    name: 'Preview',
     props: ['name', 'potd'],
     methods: {
       switchPhotos() {
