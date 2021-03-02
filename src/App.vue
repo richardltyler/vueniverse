@@ -86,12 +86,12 @@ export default {
       this.loading = 'loading....';
 
       const dayBefore = this.getDate(date, 'previous');
-      const nextDay = this.getDate(date, 'next');
 
       this.getPhoto(date, 'todayPOTD');
       this.getPhoto(dayBefore, 'previousPOTD');
 
       if (date !== this.todaysDate) {
+        const nextDay = this.getDate(date, 'next');
         this.getPhoto(nextDay, 'nextPOTD');
         this.onHome = false;
       } 
