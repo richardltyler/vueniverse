@@ -1,7 +1,8 @@
 <template>
     <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
-    <main class='main'>
+    <main class='main' >
       <router-view 
+        @submitted-date="showPicture"
         :error="error"
         :loading="loading"
         :potd="potd" 
@@ -39,6 +40,7 @@ export default {
   },
   methods: {
     showPicture(date) {
+      console.log('App')
       this.loading = 'loading....';
       if(date === undefined) {
         date = this.todaysDate;

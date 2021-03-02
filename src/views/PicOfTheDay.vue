@@ -30,27 +30,30 @@
     </section>
   </article>
   <section v-if="!error && !loading" class="previews"> 
-    <DayBefore :podb="podb"/>
-    <NextDay v-if="checkForPond()" :pond="pond" />
+    <Preview @submitted-date="submittedDate" :potd="podb"/>
+    <Preview @submitted-date="submittedDate" v-if="checkForPond()" :potd="pond" />
   </section>
 </template>
 
 <script>
-import DayBefore from './DayBefore.vue'
-import NextDay from './NextDay.vue';
+import Preview from './Preview.vue'
 import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
   props: ['error', 'loading', 'potd', 'podb', 'pond'],
   components: {
-    DayBefore,
-    NextDay
+    Preview
   },
   methods: {
     checkForPond() {
       const todaysDate = moment().format('YYYY-MM-DD');
       return (todaysDate !== this.potd.date);
+    }, 
+    submittedDate(date) {
+      console.log(date)
+
+      this.$emit('submitted-date', date)
     }
   }
 }
