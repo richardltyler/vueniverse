@@ -53,7 +53,7 @@ export default {
         this[option] = result;
       }
     },
-    
+
     checkForDateParams(date, relation) {
       if (date && relation) {
         return moment(date);
@@ -65,11 +65,11 @@ export default {
     getDate(date, relation) {
       let today = this.checkForDateParams(date, relation);
     
-      if(relation === 'next') {
-        today = today.add(1, 'days')
+      if (relation === 'next') {
+        today = today.add(1, 'days');
 
-      } else if(relation === 'previous') {
-        today = today.subtract(1, 'days')
+      } else if (relation === 'previous') {
+        today = today.subtract(1, 'days');
       }
 
       return today.format('YYYY-MM-DD');
@@ -77,7 +77,7 @@ export default {
 
     showPicture(date) {
       this.loading = 'loading....';
-      if(date === undefined) {
+      if (date === undefined) {
         date = this.todaysDate;
       }
 
