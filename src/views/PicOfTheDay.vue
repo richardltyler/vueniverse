@@ -1,6 +1,7 @@
 <template>
+  <p v-if="error">{{ error }}</p>
   <article 
-    v-if="potd" 
+    v-if="potd && !error" 
     class='potd-component'
   >
     <iframe
@@ -26,7 +27,7 @@
       <p class="potd-explanation">{{ potd.explanation }}</p>
     </section>
   </article>
-  <section class="previews"> 
+  <section v-if="!error" class="previews"> 
     <DayBefore :podb="podb"/>
     <NextDay v-if="checkForPond()" :pond="pond" />
   </section>
@@ -39,7 +40,7 @@ import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
-  props: ['potd', 'podb', 'pond'],
+  props: ['error', 'potd', 'podb', 'pond'],
   components: {
     DayBefore,
     NextDay

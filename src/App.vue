@@ -2,6 +2,7 @@
     <Header @submitted-date="showPicture" :onHome="onHome" :todaysDate="todaysDate"/>
     <main class='main'>
       <router-view 
+        :error="error"
         :potd="potd" 
         :podb="podb" 
         :pond="pond"
@@ -31,6 +32,8 @@ export default {
       podb: {},
       pond: {},
       todaysDate: this.getTodaysDate(),
+      error: '',
+      loading: false
     }
   },
   methods: {
@@ -39,7 +42,12 @@ export default {
         date = this.todaysDate;
       }
       apiCalls.getSpecificDatesPhoto(date)
-        .then(photo => this.potd = photo)
+        .then(photo => {
+          if (typeof photo === 'string') {
+            this.error = photo
+          } else {
+            this.potd = photo}
+          })
 
       const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
@@ -66,11 +74,6 @@ export default {
   },
   created() {
     this.showPicture()
-    // apiCalls.getTodaysPic()
-    //   .then(photo => this.potd = photo);
-    // const dateMoment = moment.utc().subtract(1, 'days').format('YYYY-MM-DD')
-    // apiCalls.getSpecificDatesPhoto(dateMoment)
-    //   .then(data => this.podb = data)
   }
 }
 </script>
@@ -126,13 +129,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadeIn ease 2s;
 }
-
-@keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-} */
 
 p {
   color: #49A8C6;
