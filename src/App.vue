@@ -5,8 +5,8 @@
         @submitted-date="showPicture"
         :error="error"
         :loading="loading"
-        :potd="todayPOTD" 
-        :podb="previousPOTD" 
+        :todayPOTD="todayPOTD" 
+        :previousPOTD="previousPOTD" 
         :pond="nextPOTD"
       />
     </main>
@@ -30,12 +30,12 @@ export default {
   data() {
     return {
       onHome: true,
+      loading: '',
+      error: '',
+      todaysDate: this.getTodaysDate(),
       todayPOTD: {},
       previousPOTD: {},
       nextPOTD: {},
-      todaysDate: this.getTodaysDate(),
-      error: '',
-      loading: ''
     }
   },
   methods: {

@@ -3,14 +3,14 @@
   <p class="error-message" v-if="error">{{ error }}</p>
   
   <article 
-    v-if="potd && !error && !loading" 
+    v-if="todayPOTD && !error && !loading" 
     class='potd-component'
   >
     <iframe
-      :src="potd.url" 
+      :src="todayPOTD.url" 
       class='video' 
-      v-if="potd.media_type === 'video'" 
-      :title="potd.title"
+      v-if="todayPOTD.media_type === 'video'" 
+      :title="todayPOTD.title"
       allowfullscreen="allowfullscreen"
       mozallowfullscreen="mozallowfullscreen"
       msallowfullscreen="msallowfullscreen"
@@ -18,19 +18,19 @@
       webkitallowfullscreen="webkitallowfullscreen"
     />
     <img 
-      :src="potd.url" 
+      :src="todayPOTD.url" 
       class="photo" 
-      v-if="potd.media_type === 'image'" :alt="potd.title"
+      v-if="todayPOTD.media_type === 'image'" :alt="todayPOTD.title"
     >
     <section class="information">
-      <h2 class="potd-date">{{ potd.date }}</h2>
-      <h3 class="potd-title">{{ potd.title }}</h3>
-      <h4 class="potd-copyright" v-if="potd.copyright">{{ potd.copyright }}</h4>
-      <p class="potd-explanation">{{ potd.explanation }}</p>
+      <h2 class="potd-date">{{ todayPOTD.date }}</h2>
+      <h3 class="potd-title">{{ todayPOTD.title }}</h3>
+      <h4 class="potd-copyright" v-if="todayPOTD.copyright">{{ todayPOTD.copyright }}</h4>
+      <p class="potd-explanation">{{ todayPOTD.explanation }}</p>
     </section>
   </article>
   <section v-if="!error && !loading" class="previews"> 
-    <Preview name="Previous" :potd="podb"/>
+    <Preview name="Previous" :potd="previousPOTD"/>
     <Preview name="Next" v-if="checkForPond()" :potd="pond" />
   </section>
 </template>
@@ -41,7 +41,7 @@ import moment from 'moment';
 
 export default {
   name: 'PicOfTheDay',
-  props: ['error', 'loading', 'potd', 'podb', 'pond'],
+  props: ['error', 'loading', 'todayPOTD', 'previousPOTD', 'pond'],
   emits: ['submitted-date'],
   components: {
     Preview
@@ -49,7 +49,7 @@ export default {
   methods: {
     checkForPond() {
       const todaysDate = moment().format('YYYY-MM-DD');
-      return (todaysDate !== this.potd.date);
+      return (todaysDate !== this.todayPOTD.date);
     }
   }
 }
