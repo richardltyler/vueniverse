@@ -1,20 +1,20 @@
 <template>
   <header class='header'>
     <section class="logo">
-     <router-link to='/home' @click='() => findPicture(todaysDate)'><h1>VUENIVERSE</h1></router-link>
+     <router-link to='/home' @click='(event) => findPicture(event, todaysDate)'><h1>VUENIVERSE</h1></router-link>
      <p>Expand your Vue.</p>
     </section>
-    <div>
+    <form>
       <input 
         aria-label='date-input'
         v-model="date" 
         type='date' 
         min='1995-06-20' 
-        :max="todaysDate"
-        @change='() => findPicture(date)' 
+        :max="todaysDate" 
       />
-    </div>
-    <router-link v-if="onHome !== true" class='home-link' to='/home' @click='() => findPicture(todaysDate)'> Home </router-link>
+      <button @click='(event) => findPicture(event, date)'>SUBMIT</button>
+    </form>
+    <router-link v-if="onHome !== true" class='home-link' to='/home' @click='(event) => findPicture(event, todaysDate)'> Home </router-link>
   </header>
 </template>
 
@@ -30,9 +30,15 @@ export default {
     }
   },
   methods: {
-    findPicture(date) {
-      this.$emit('submitted-date', date)
-      router.push({path:`/date/${date}`})
+    findPicture(event, date) {
+      event.preventDefault();
+      
+      if (date) {
+        this.$emit('submitted-date', date);
+        router.push({path:`/date/${date}`})
+      }
+
+      this.date = '';
     }
   }
 }
@@ -67,11 +73,15 @@ export default {
     margin-right: 4%;
   }
 
-  input {
+  input, button {
     background-color: black;
     color: white;
-    border: none;
+    border: 1px solid white;
+    height: 24px;
+    box-sizing: border-box;
+    padding: 0px;
   }
+
   ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
