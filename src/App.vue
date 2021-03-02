@@ -42,21 +42,27 @@ export default {
         date = this.todaysDate;
       }
       apiCalls.getSpecificDatesPhoto(date)
-        .then(photo => {
-          if (typeof photo === 'string') {
-            this.error = photo
+        .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
           } else {
-            this.potd = photo}
+            this.potd = results}
           })
 
       const dayBefore = this.getPreviousDate(date)
       apiCalls.getSpecificDatesPhoto(dayBefore)
-        .then(photo => this.podb = photo)
+        .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
+          } else { this.podb = results}})
 
       if (date !== this.todaysDate) {
         const nextDay = this.getNextDate(date);
         apiCalls.getSpecificDatesPhoto(nextDay)
-          .then(photo => this.pond = photo)
+          .then(results => {
+          if (typeof results === 'string') {
+            this.error = results
+          } else {this.pond = results}})
         this.onHome = false;
       } 
     },

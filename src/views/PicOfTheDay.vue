@@ -1,5 +1,5 @@
 <template>
-  <p v-if="error">{{ error }}</p>
+  <p class="error-message" v-if="error">{{ error }}</p>
   <article 
     v-if="potd && !error" 
     class='potd-component'
@@ -100,5 +100,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.error-message {
+  text-align: center;
+  padding: 0 30% 0 30%;
 }
 </style>
