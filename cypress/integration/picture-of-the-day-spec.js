@@ -1,25 +1,23 @@
 import moment from 'moment'
 
 describe("Pic of the Day component", () => {
-  const today = moment().format('YYYY-MM-DD')
+  const today = moment().format('YYYY-MM-DD');
+  const previous = moment().subtract(1, 'days').format('YYYY-MM-DD');
+  
 
   beforeEach(() => {
-
-    cy.fixture('potd_data.json')
-      .then(() => {
-        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
-          statusCode: 201,
-          body: {
-            "date": today,
-            "explanation":"Sometimes it do be like that.",
-            "hdurl":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1.jpg",
-            "media_type":"image",
-            "service_version":"v1",
-            "title":"Perseverance Landing Site from Mars Reconnaissance Orbiter",
-            "url":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1_1035c.jpg"
-          }
-        })
-      })
+    cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+      statusCode: 201,
+      body: {
+        "date": today,
+        "explanation":"Sometimes it do be like that.",
+        "hdurl":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1.jpg",
+        "media_type":"image",
+        "service_version":"v1",
+        "title":"Perseverance Landing Site from Mars Reconnaissance Orbiter",
+        "url":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1_1035c.jpg"
+      }
+    })
     cy.fixture('spec_date_data.json')
       .then((response) => {
         cy.intercept('GET', 'https://api.nasa.gov/planetary/apod?date=2020-12-25&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86', {
@@ -29,18 +27,26 @@ describe("Pic of the Day component", () => {
       }) 
       cy.fixture('next_day_data.json')
       .then((response) => {
-        cy.intercept('GET', 'https://api.nasa.gov/planetary/apod?date=2020-12-26&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86', {
+        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=2020-12-26&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
           statusCode: 201,
           body: response
         })
       }) 
-      cy.fixture('potd_data.json')
+      cy.fixture('podb_data.json')
       .then((response) => {
-        cy.intercept('GET', 'https://api.nasa.gov/planetary/apod?date=2020-12-24&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86', {
+        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
           statusCode: 201,
           body: response
         })
       }) 
+      cy.fixture('podb_data.json')
+      .then((response) => {
+        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=2020-12-24&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+          statusCode: 201,
+          body: response
+        })
+      })
+      
     cy.visit("http://localhost:8080") 
       .get(".enter-site").click()
   })
@@ -103,10 +109,16 @@ describe("Pic of the Day component", () => {
 describe('Picture of the Day 404 Error', () => {
   const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 404
     })
+    cy.fixture('podb_data.json')
+    .then((response) => {
+      cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+        statusCode: 201,
+        body: response
+      })
+    }) 
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
@@ -118,10 +130,16 @@ describe('Picture of the Day 404 Error', () => {
 describe('Picture of the Day 500 Error', () => {
   const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-    
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 500
     })
+    cy.fixture('podb_data.json')
+    .then((response) => {
+      cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+        statusCode: 201,
+        body: response
+      })
+    }) 
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
@@ -133,14 +151,25 @@ describe('Picture of the Day 500 Error', () => {
 describe("Picture of the Day Loading", () => {
   const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-    cy.fixture('potd_data.json')
-      .then((response) => {
-        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
-          statusCode: 201,
-          delay: 100,
-          body: response
-        })
+    cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+      statusCode: 201,
+      body: {
+        "date": today,
+        "explanation":"Sometimes it do be like that.",
+        "hdurl":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1.jpg",
+        "media_type":"image",
+        "service_version":"v1",
+        "title":"Perseverance Landing Site from Mars Reconnaissance Orbiter",
+        "url":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1_1035c.jpg"
+      }
+    })
+    cy.fixture('podb_data.json')
+    .then((response) => {
+      cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+        statusCode: 201,
+        body: response
       })
+    }) 
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
