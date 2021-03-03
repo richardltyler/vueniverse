@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Preview from './Preview.vue'
+import Preview from './Preview.vue';
 import moment from 'moment';
 
 export default {

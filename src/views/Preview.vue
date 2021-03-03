@@ -22,13 +22,13 @@
 
 <script>
 import router from '../router';
+
 export default {
     name: 'Preview',
     props: ['name', 'potd'],
     methods: {
       switchPhotos() {
         this.$parent.$emit('submitted-date', this.potd.date);
-
         router.push({path:`/date/${this.potd.date}`});
       }
     }
@@ -37,19 +37,25 @@ export default {
 
 <style>
 .different-day-container {
-    border: white 1px solid;
-    width: 160px;
-    height: 180px;
-    margin-left: 4%;
-    margin-right: 4%;
-    text-align: center;
-    overflow: hidden;
+  border: white 1px solid;
+  width: 160px;
+  height: 180px;
+  margin-left: 4%;
+  margin-right: 4%;
+  text-align: center;
+}
+
+.different-day-container:hover {
+  cursor: pointer;
 }
 
 .different-day-video,
 .different-day-photo {
   position: relative;
-  right: 38%;
+  max-width: 90%;
+  max-height: 55%;
   border: none;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px #434343);
 }
 </style>

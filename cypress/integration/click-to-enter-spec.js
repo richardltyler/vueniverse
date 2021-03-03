@@ -11,13 +11,19 @@ describe("Click To Enter component", () => {
       .get("header").get("p").contains("Expand your Vue.").should("be.visible")
   })
 
-  it("Should contain a blast-off link and additional text", () => {
+  it("Should contain a welcome message", () => {
+    cy.get("h2").contains("🤠 👽 WELCOME TO THE VUENIVERSE!! 👽 🤠")
+  })
+
+  it("Should contain a blast-off link that takes you to the home page", () => {
     cy
-      .get("main").get("a").eq(2).contains("🚀 🛰 CLICK HERE TO ENTER 🛰 🚀").should("be.visible");
+      .get(".enter-site").contains("🚀 🛰 CLICK HERE TO ENTER 🛰 🚀")
+      .click()
+      .url().should("include", "/home")
   })
 
   it("Should contain a footer with component links", () => {
     cy
-      .get("footer a").contains("About").should("be.visible");
+      .get("footer a").contains("About").should("be.visible")
   })
 })

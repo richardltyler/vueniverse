@@ -1,5 +1,0 @@
-describe("Preview Component", () => {
-  beforeEach(() => {
-    
-  })
-})

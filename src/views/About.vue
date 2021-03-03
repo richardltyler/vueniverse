@@ -20,9 +20,12 @@
       <li>
         Cypress.js
       </li>
+      <li>
+        Moment.js 
+      </li>
     </ul>
     <h3>Creators</h3>
-    <router-link class='Devs-link' to='/devs'>Click here to see the engineers who created this site!</router-link>
+    <router-link class='devs-link' to='/devs'>Click here to see the engineers who created this site!</router-link>
   </article>
 </template>
 
@@ -53,6 +56,11 @@
     text-align: center;
     list-style-type: none;
     color: #49A8C6;
+  }
+
+  .devs-link {
+    text-align: center;
+    padding: 0 50px;
   }
 
   @media screen and (max-width: 430px) {

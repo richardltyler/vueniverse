@@ -10,22 +10,20 @@
         :nextPOTD="nextPOTD"
       />
     </main>
-    <footer>
-      <nav class='footer-links'>
-        <router-link class='footer-link' to='/about'>About</router-link>
-      </nav>
-    </footer>
+    <Footer />
 </template>
 
 <script>
 import apiCalls from './apiCalls.js';
-import Header from './Header.vue';
+import Header from './views/Header.vue';
+import Footer from './views/Footer.vue';
 import moment from 'moment';
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   },
   data() {
     return {
