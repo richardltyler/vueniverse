@@ -93,7 +93,27 @@ describe('Picture of the Day 500 Error', () => {
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
-  it.only('Should display the error number and a message when something goes wrong with the api call to retrieve the photo of the day information is not ok', () => {
+  it('Should display the error number and a message when something goes wrong with the api call to retrieve the photo of the day information is not ok', () => {
     cy.get('main').contains("500 error. Sorry! Something went wrong! Try again later or go to Contact Us to contact the developers with questions!")
   })
+})
+
+describe("Picture of the Day Loading", () => {
+  beforeEach(() => {
+    const today = moment().format('YYYY-MM-DD')
+    cy.fixture('potd_data.json')
+      .then((response) => {
+        cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
+          statusCode: 201,
+          delay: 100,
+          body: response
+        })
+      })
+    cy.visit("http://localhost:8080")
+      .get(".enter-site").click() 
+  })
+    it.only('Should have a loading message while retrieving the movies', () => {
+      cy.get('main').contains('loading...')
+    });
+ 
 })
