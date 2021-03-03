@@ -1,15 +1,23 @@
 import moment from 'moment'
 
 describe("Pic of the Day component", () => {
+  const today = moment().format('YYYY-MM-DD')
 
   beforeEach(() => {
-    const today = moment().format('YYYY-MM-DD')
 
     cy.fixture('potd_data.json')
-      .then((response) => {
+      .then(() => {
         cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
           statusCode: 201,
-          body: response
+          body: {
+            "date": today,
+            "explanation":"Sometimes it do be like that.",
+            "hdurl":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1.jpg",
+            "media_type":"image",
+            "service_version":"v1",
+            "title":"Perseverance Landing Site from Mars Reconnaissance Orbiter",
+            "url":"https://apod.nasa.gov/apod/image/2102/PIA24333_fig1_1035c.jpg"
+          }
         })
       })
     cy.fixture('spec_date_data.json')
@@ -42,7 +50,8 @@ describe("Pic of the Day component", () => {
   })
 
   it("Should have a title, date, and explanation for the image", () => {
-    cy.get(".potd-date").contains("2021-02-24")
+    const today = moment().format('YYYY-MM-DD')
+    cy.get(".potd-date").contains(today)
     cy.get(".potd-title").contains("Perseverance Landing Site from Mars Reconnaissance Orbiter")
     cy.get(".potd-explanation").contains("Sometimes it do be like that.")
   })
@@ -73,11 +82,22 @@ describe("Pic of the Day component", () => {
     cy.get(".potd-explanation").contains("Fear is the Mindkiller!")
   })
 
+  it("Should have a section for copyright if the response has a copyright in it", () => {
+    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get(".potd-copyright").contains("Richard, Cole, Lucas")
+  })
+
+  it("Should have a home link when not on today's date", () => {
+    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get(".home-link")
+      .click()
+      .url().should("include", "/home")
+  })
 })
 
 describe('Picture of the Day 404 Error', () => {
+  const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-    const today = moment().format('YYYY-MM-DD')
 
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 404
@@ -91,8 +111,8 @@ describe('Picture of the Day 404 Error', () => {
 })
 
 describe('Picture of the Day 500 Error', () => {
+  const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-    const today = moment().format('YYYY-MM-DD')
     
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 500
@@ -106,8 +126,8 @@ describe('Picture of the Day 500 Error', () => {
 })
 
 describe("Picture of the Day Loading", () => {
+  const today = moment().format('YYYY-MM-DD')
   beforeEach(() => {
-    const today = moment().format('YYYY-MM-DD')
     cy.fixture('potd_data.json')
       .then((response) => {
         cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
