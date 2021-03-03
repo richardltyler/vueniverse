@@ -42,7 +42,7 @@ describe("Pic of the Day component", () => {
   })
 
   it("Should have a title, date, and explanation for the image", () => {
-    cy.get(".potd-date").contains("021-02-24")
+    cy.get(".potd-date").contains("2021-02-24")
     cy.get(".potd-title").contains("Perseverance Landing Site from Mars Reconnaissance Orbiter")
     cy.get(".potd-explanation").contains("Sometimes it do be like that.")
   })
@@ -64,6 +64,13 @@ describe("Pic of the Day component", () => {
     cy.get(".different-day-container").last()
       .contains("Next")
     cy.get(".different-day-container").last("img")
+  })
+
+  it("Should populate with the new date\'s info when a different day is selected", () => {
+    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get(".potd-date").contains("2020-12-25")
+    cy.get(".potd-title").contains("This is what peak performance looks like.")
+    cy.get(".potd-explanation").contains("Fear is the Mindkiller!")
   })
 
 })
@@ -112,7 +119,7 @@ describe("Picture of the Day Loading", () => {
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
-    it.only('Should have a loading message while retrieving the movies', () => {
+    it('Should have a loading message while retrieving the movies', () => {
       cy.get('main').contains('loading...')
     });
  
