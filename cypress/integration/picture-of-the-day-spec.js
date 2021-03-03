@@ -112,13 +112,6 @@ describe('Picture of the Day 404 Error', () => {
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 404
     })
-    cy.fixture('podb_data.json')
-    .then((response) => {
-      cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
-        statusCode: 201,
-        body: response
-      })
-    }) 
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
@@ -133,13 +126,6 @@ describe('Picture of the Day 500 Error', () => {
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 500
     })
-    cy.fixture('podb_data.json')
-    .then((response) => {
-      cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${previous}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
-        statusCode: 201,
-        body: response
-      })
-    }) 
     cy.visit("http://localhost:8080")
       .get(".enter-site").click() 
   })
@@ -150,6 +136,7 @@ describe('Picture of the Day 500 Error', () => {
 
 describe("Picture of the Day Loading", () => {
   const today = moment().format('YYYY-MM-DD')
+  const previous = moment().subtract(1, 'days').format('YYYY-MM-DD');
   beforeEach(() => {
     cy.intercept('GET', `https://api.nasa.gov/planetary/apod?date=${today}&api_key=j9VLjGbdXCRXtf61nCle9dLGtNzWVnNqUM1BNV86`, {
       statusCode: 201,
