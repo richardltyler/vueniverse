@@ -64,34 +64,39 @@ describe("Pic of the Day component", () => {
 
   it("Should display a new picture after changing the date input", () => {
     cy
-      .get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+      .get("header").get("input").type("2020-12-25")
+    cy.get(".submit-btn").click().wait(500)
       .get("img").should("have.attr", "src", "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=webp,fit=pad,dpr=2/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F890e41365fd7d265d770d2c2c6969993.png")
   })
 
   it("Should have a next day section when the date isn\'t today", () => {
-    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get("header").get("input").type("2020-12-25")
+    cy.get(".submit-btn").click().wait(500)
     cy.get(".different-day-container").last()
       .contains("Next")
     cy.get(".different-day-container").last("img")
   })
 
   it("Should populate with the new date\'s info when a different day is selected", () => {
-    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get("header").get("input").type("2020-12-25")
+    cy.get(".submit-btn").click().wait(500)
     cy.get(".potd-date").contains("2020-12-25")
     cy.get(".potd-title").contains("This is what peak performance looks like.")
     cy.get(".potd-explanation").contains("Fear is the Mindkiller!")
   })
 
   it("Should have a section for copyright if the response has a copyright in it", () => {
-    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get("header").get("input").type("2020-12-25")
+    cy.get(".submit-btn").click().wait(500)
     cy.get(".potd-copyright").contains("Richard, Cole, Lucas")
   })
 
   it("Should have a home link when not on today's date", () => {
-    cy.get("header").get("input").type("2020-12-25", "{enter}").trigger("change").wait(500)
+    cy.get("header").get("input").type("2020-12-25")
+    cy.get(".submit-btn").click().wait(500)
     cy.get(".home-link")
       .click()
-      .url().should("include", "/home")
+      .url().should("include", `/date/${today}`)
   })
 })
 
