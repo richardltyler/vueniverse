@@ -12,7 +12,7 @@
         min='1995-06-20' 
         :max="todaysDate" 
       />
-      <button @click='(event) => findPicture(event, date)'>SUBMIT</button>
+      <button class="submit-btn" @click='(event) => findPicture(event, date)'>SUBMIT</button>
     </form>
     <router-link v-if="onHome !== true" class='home-link' to='/home' @click='(event) => findPicture(event, todaysDate)'> Home </router-link>
   </header>
