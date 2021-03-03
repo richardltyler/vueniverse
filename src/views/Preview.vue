@@ -28,8 +28,8 @@ export default {
     props: ['name', 'potd'],
     methods: {
       switchPhotos() {
-        this.$parent.$emit('submitted-date', this.potd.date)
-        router.push({path:`/date/${this.potd.date}`})
+        this.$parent.$emit('submitted-date', this.potd.date);
+        router.push({path:`/date/${this.potd.date}`});
       }
     }
 }

@@ -5,9 +5,9 @@
         @submitted-date="showPicture"
         :error="error"
         :loading="loading"
-        :potd="potd" 
-        :podb="podb" 
-        :pond="pond"
+        :todayPOTD="todayPOTD" 
+        :previousPOTD="previousPOTD" 
+        :nextPOTD="nextPOTD"
       />
     </main>
     <Footer />
@@ -28,60 +28,79 @@ export default {
   data() {
     return {
       onHome: true,
-      potd: {},
-      podb: {},
-      pond: {},
-      todaysDate: this.getTodaysDate(),
+      loading: '',
       error: '',
-      loading: ''
+      todaysDate: this.getDate(),
+      todayPOTD: {},
+      previousPOTD: {},
+      nextPOTD: {},
     }
   },
   methods: {
-    showPicture(date) {
-      this.loading = 'loading....';
-      if(date === undefined) {
-        date = this.todaysDate;
-      }
+    getPhoto(date, option) {
       apiCalls.getSpecificDatesPhoto(date)
         .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else {
-            this.potd = results}
-          })
+          this.handleError(results, option)
+        });
+    },
 
-      const dayBefore = this.getPreviousDate(date)
-      apiCalls.getSpecificDatesPhoto(dayBefore)
-        .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else { this.podb = results}})
+    handleError(result, option) {
+      if (typeof result === 'string') {
+        this.error = result;
+
+      } else {
+        this[option] = result;
+      }
+    },
+
+    checkForDateParams(date, relation) {
+      if (date && relation) {
+        return moment(date);
+
+      } else {
+        return moment();
+      }
+    },
+
+    getDate(date, relation) {
+      let today = this.checkForDateParams(date, relation);
+    
+      if (relation === 'next') {
+        today = today.add(1, 'days');
+
+      } else if (relation === 'previous') {
+        today = today.subtract(1, 'days');
+
+      }
+
+      return today.format('YYYY-MM-DD');
+    },
+
+    showPicture(date) {
+      if (date === undefined) {
+        date = this.todaysDate;
+      }
+
+      this.loading = 'loading....';
+
+      const dayBefore = this.getDate(date, 'previous');
+
+      this.getPhoto(date, 'todayPOTD');
+      this.getPhoto(dayBefore, 'previousPOTD');
 
       if (date !== this.todaysDate) {
-        const nextDay = this.getNextDate(date);
-        apiCalls.getSpecificDatesPhoto(nextDay)
-          .then(results => {
-          if (typeof results === 'string') {
-            this.error = results
-          } else {this.pond = results}})
+        const nextDay = this.getDate(date, 'next');
+        this.getPhoto(nextDay, 'nextPOTD');
         this.onHome = false;
       } 
-      setTimeout(() => {this.loading = ''}, 1000)
+
+      setTimeout(() => {this.loading = ''}, 1000);
     },
-    getTodaysDate() {
-      return moment().format('YYYY-MM-DD');
-    },
-    getPreviousDate(date) {
-      const day = moment(date);
-      return day.subtract(1, 'days').format('YYYY-MM-DD');
-    },
-    getNextDate(date) {
-      const day = moment(date);
-      return day.add(1, 'days').format('YYYY-MM-DD');
-    }
+
   },
+
   created() {
-    this.showPicture()
+    this.showPicture();
   }
 }
 </script>
